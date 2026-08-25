@@ -15,7 +15,7 @@ MonoBehaviour:
   invaderName: 태고의 산군
   tier: 2
   sprite: {fileID: 0}
-  baseHp: 800
-  moveSpeed: 0.6
-  wardDamage: 5
-  manaCrystalReward: 50
+  baseHp: 900
+  moveSpeed: 0.9
+  wardDamage: 7
+  manaCrystalReward: 70
