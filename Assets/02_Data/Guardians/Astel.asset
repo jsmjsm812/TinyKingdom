@@ -19,5 +19,6 @@ MonoBehaviour:
   attackSpeed: 1.5
   attackType: 2
   attackPower: 35
+  areaRadius: 2
   specialEffectDescription: 3초마다 범위 속박 1.5초
   shopCost: 250

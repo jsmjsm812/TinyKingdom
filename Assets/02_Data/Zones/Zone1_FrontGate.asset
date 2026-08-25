@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd96abb29d6bfee49a7c9a4e1caff890, type: 3}
+  m_Name: Zone1_FrontGate
+  m_EditorClassIdentifier:
+  zoneName: 정문 앞뜰
+  zoneIndex: 1
+  hpMultiplier: 1
+  speedMultiplier: 1
+  manaMultiplier: 1
+  bossInvader: {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c0e, type: 2}
+  specialRuleDescription: 없음(튜토리얼)
+  unlockedGuardians:
+  - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c03, type: 2}
+  - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c05, type: 2}

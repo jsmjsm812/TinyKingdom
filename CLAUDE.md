@@ -10,7 +10,12 @@ Full design reference lives in `Docs/GDD.md` — read it before implementing any
 
 ## Current status
 
-Project just created (Unity 6, 2D URP template). No gameplay code written yet. Following the 3-week roadmap in `Docs/GDD.md` — currently **Week 1: battle prototype**.
+Following the 3-week roadmap in `Docs/GDD.md` — currently **Week 1: battle prototype**.
+Data tables (Guardian/Invader/Wave/Zone) and the core battle loop (grid, placement, auto-attack,
+invader movement, object pooling, wave spawner, ward HP) are written. Not yet wired into a scene —
+still needs: a Canvas with a `battlefieldRoot` RectTransform, an `InvaderUnit` prefab, and one
+GameObject holding `GridManager` + `WardHealth` + `RunCurrency` + `WaveSpawner` with references
+assigned in the Inspector. Shop/roster UI, merge logic, and save/load are not started (Week 2/3).
 
 ## Commands
 

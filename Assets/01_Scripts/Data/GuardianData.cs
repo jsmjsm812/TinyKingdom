@@ -20,6 +20,8 @@ namespace WitchHour.Data
         public float attackSpeed;
         public AttackType attackType;
         public float attackPower;
+        [Tooltip("범위 반경(유닛) — attackType이 Area일 때만 사용")]
+        public float areaRadius;
 
         [Header("특수효과")]
         [TextArea] public string specialEffectDescription;

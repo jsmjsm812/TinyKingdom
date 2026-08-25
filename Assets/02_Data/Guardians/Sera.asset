@@ -19,5 +19,6 @@ MonoBehaviour:
   attackSpeed: 0.8
   attackType: 2
   attackPower: 16
+  areaRadius: 1
   specialEffectDescription: 피격 대상 이동속도 -20%, 2초
   shopCost: 100
