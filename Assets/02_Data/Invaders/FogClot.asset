@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
-  m_Name: ShadowWolf
+  m_Name: FogClot
   m_EditorClassIdentifier:
-  invaderName: 그림자늑대
-  tier: 1
+  invaderName: 안개덩이
+  tier: 0
   sprite: {fileID: 0}
-  baseHp: 35
-  moveSpeed: 1.9
-  wardDamage: 2
-  manaCrystalReward: 5
+  baseHp: 50
+  moveSpeed: 0.8
+  wardDamage: 1
+  manaCrystalReward: 2

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
-  m_Name: BoneVine
+  m_Name: ShadowClaw
   m_EditorClassIdentifier:
-  invaderName: 뼈덩쿨
-  tier: 0
+  invaderName: 그림자발톱
+  tier: 1
   sprite: {fileID: 0}
-  baseHp: 50
-  moveSpeed: 0.8
-  wardDamage: 1
-  manaCrystalReward: 2
+  baseHp: 35
+  moveSpeed: 1.9
+  wardDamage: 2
+  manaCrystalReward: 5
