@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fac782f29ced740b33cc95ed205511, type: 3}
+  m_Name: Astel
+  m_EditorClassIdentifier:
+  guardianName: 아스텔
+  rarity: 2
+  portrait: {fileID: 0}
+  range: 3
+  attackSpeed: 1.5
+  attackType: 2
+  attackPower: 35
+  specialEffectDescription: 3초마다 범위 속박 1.5초
+  shopCost: 250

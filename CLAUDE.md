@@ -22,7 +22,7 @@ No CLI build/test pipeline yet — this is early-stage Unity dev, verified via t
 
 ```
 Assets/
-  Scripts/
+  01_Scripts/
     Data/       ScriptableObject class definitions (GuardianData, InvaderData, WaveData, ZoneData...)
     Field/      Grid/slot system, lane, placement
     Combat/     Auto-attack, projectiles, damage resolution
@@ -30,13 +30,15 @@ Assets/
     Merge/      Auto-merge logic (star-up on 3-of-a-kind)
     Core/       Game/run state, wave spawner, save/load, currency
     UI/         Non-shop UI (result screen, guardian codex, settings)
-  Data/
+  02_Data/
     Guardians/  GuardianData .asset instances (one per 수호자, 10 total)
     Invaders/   InvaderData .asset instances (one per 침입자, 4 total)
-  Art/Sprites, Art/Fonts, Audio/SFX, Audio/BGM, Prefabs, Scenes
+  03_Art/Sprites, 03_Art/Fonts, 04_Audio/SFX, 04_Audio/BGM, 05_Prefabs, 06_Scenes, 07_Settings
 Docs/
   GDD.md        condensed design reference (stats, costs, wave/zone tables, save schema)
 ```
+
+Top-level `Assets/` folders are numbered (`01_Scripts`, `02_Data`, ...) to control sort order in the Unity Project window — keep new top-level folders consistent with this scheme (pick the next free number, or slot into the existing sequence) rather than adding unnumbered ones.
 
 **Data-driven design is the whole point of this project** (both as an architecture choice and as a portfolio talking point): every 수호자/침입자/웨이브/구역 is a ScriptableObject asset, not a hardcoded class or switch statement. Adding a new guardian should mean "create one .asset in the Inspector," never "write a new C# class."
 
