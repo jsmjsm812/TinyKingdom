@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
-  m_Name: PrimordialRoot
+  m_Name: PrimordialTiger
   m_EditorClassIdentifier:
-  invaderName: 태고의 뿌리
+  invaderName: 태고의 산군
   tier: 2
   sprite: {fileID: 0}
-  baseHp: 700
-  moveSpeed: 0.7
-  wardDamage: 6
-  manaCrystalReward: 55
+  baseHp: 800
+  moveSpeed: 0.6
+  wardDamage: 5
+  manaCrystalReward: 50

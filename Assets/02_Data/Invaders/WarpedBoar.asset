@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
-  m_Name: AncientShadow
+  m_Name: WarpedBoar
   m_EditorClassIdentifier:
-  invaderName: 태고의 그림자
-  tier: 2
+  invaderName: 일그러진 멧돼지
+  tier: 0
   sprite: {fileID: 0}
-  baseHp: 800
-  moveSpeed: 0.6
-  wardDamage: 5
-  manaCrystalReward: 50
+  baseHp: 50
+  moveSpeed: 0.8
+  wardDamage: 1
+  manaCrystalReward: 2

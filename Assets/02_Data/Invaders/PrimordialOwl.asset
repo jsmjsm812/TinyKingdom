@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
-  m_Name: ShadowClaw
+  m_Name: PrimordialOwl
   m_EditorClassIdentifier:
-  invaderName: 그림자발톱
-  tier: 1
+  invaderName: 태고의 올빼미
+  tier: 2
   sprite: {fileID: 0}
-  baseHp: 35
-  moveSpeed: 1.9
-  wardDamage: 2
-  manaCrystalReward: 5
+  baseHp: 1000
+  moveSpeed: 0.5
+  wardDamage: 5
+  manaCrystalReward: 60

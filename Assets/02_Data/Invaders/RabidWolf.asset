@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
-  m_Name: Fogeye
+  m_Name: RabidWolf
   m_EditorClassIdentifier:
-  invaderName: 안개눈
-  tier: 0
+  invaderName: 미쳐버린 늑대
+  tier: 1
   sprite: {fileID: 0}
-  baseHp: 20
-  moveSpeed: 1.2
-  wardDamage: 1
-  manaCrystalReward: 2
+  baseHp: 35
+  moveSpeed: 1.9
+  wardDamage: 2
+  manaCrystalReward: 5

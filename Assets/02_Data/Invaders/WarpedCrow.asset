@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
-  m_Name: FogClot
+  m_Name: WarpedCrow
   m_EditorClassIdentifier:
-  invaderName: 안개덩이
+  invaderName: 일그러진 까마귀
   tier: 0
   sprite: {fileID: 0}
-  baseHp: 50
-  moveSpeed: 0.8
+  baseHp: 20
+  moveSpeed: 1.2
   wardDamage: 1
   manaCrystalReward: 2
