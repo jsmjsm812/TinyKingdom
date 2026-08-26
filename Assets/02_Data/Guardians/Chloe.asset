@@ -11,13 +11,14 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0fac782f29ced740b33cc95ed205511, type: 3}
   m_Name: Chloe
-  m_EditorClassIdentifier:
-  guardianName: 클로에
+  m_EditorClassIdentifier: 
+  guardianName: "\uD074\uB85C\uC5D0"
   rarity: 1
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 415c8686982dcbf4f8fe953fa06d1c5c, type: 3}
   range: 3
   attackSpeed: 0.5
   attackType: 4
   attackPower: 8
-  specialEffectDescription: 적중 시 2초간 도트 6 추가 (총 14)
+  areaRadius: 0
+  specialEffectDescription: "\uC801\uC911 \uC2DC 2\uCD08\uAC04 \uB3C4\uD2B8 6 \uCD94\uAC00 (\uCD1D 14)"
   shopCost: 100

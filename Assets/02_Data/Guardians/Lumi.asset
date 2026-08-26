@@ -11,13 +11,14 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0fac782f29ced740b33cc95ed205511, type: 3}
   m_Name: Lumi
-  m_EditorClassIdentifier:
-  guardianName: 루미
+  m_EditorClassIdentifier: 
+  guardianName: "\uB8E8\uBBF8"
   rarity: 0
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: ff696fb3cb197f64e8809f5fafadb4ab, type: 3}
   range: 3
   attackSpeed: 1.2
   attackType: 0
   attackPower: 10
-  specialEffectDescription: "—"
+  areaRadius: 0
+  specialEffectDescription: "\u2014"
   shopCost: 40

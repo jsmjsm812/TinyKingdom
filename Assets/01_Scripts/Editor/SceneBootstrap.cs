@@ -92,7 +92,7 @@ namespace WitchHour.EditorTools
             const string path = "Assets/06_Scenes/Battle.unity";
             var scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
 
-            var standalone = UnityEngine.Object.FindFirstObjectByType<StandaloneInputModule>();
+            var standalone = UnityEngine.Object.FindAnyObjectByType<StandaloneInputModule>();
             if (standalone != null)
             {
                 var go = standalone.gameObject;
@@ -101,7 +101,7 @@ namespace WitchHour.EditorTools
                 Debug.Log("[SceneBootstrap] Battle 씬 EventSystem을 InputSystemUIInputModule로 교체했습니다.");
             }
 
-            if (UnityEngine.Object.FindFirstObjectByType<Camera>() == null)
+            if (UnityEngine.Object.FindAnyObjectByType<Camera>() == null)
             {
                 var camGO = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener));
                 camGO.tag = "MainCamera";

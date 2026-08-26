@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
   m_Name: PrimordialTiger
-  m_EditorClassIdentifier:
-  invaderName: 태고의 산군
+  m_EditorClassIdentifier: 
+  invaderName: "\uD0DC\uACE0\uC758 \uC0B0\uAD70"
   tier: 2
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 59844a801aa9c384389981031b0ab1ca, type: 3}
   baseHp: 900
   moveSpeed: 0.9
   wardDamage: 7

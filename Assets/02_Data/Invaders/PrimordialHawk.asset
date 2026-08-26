@@ -11,11 +11,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
   m_Name: PrimordialHawk
-  m_EditorClassIdentifier:
-  invaderName: 태고의 매
+  m_EditorClassIdentifier: 
+  invaderName: "\uD0DC\uACE0\uC758 \uB9E4"
   tier: 2
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 0711d58e7cc447c46957884e00d34716, type: 3}
   baseHp: 600
-  moveSpeed: 1.0
+  moveSpeed: 1
   wardDamage: 4
   manaCrystalReward: 45

@@ -11,14 +11,14 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0fac782f29ced740b33cc95ed205511, type: 3}
   m_Name: Sera
-  m_EditorClassIdentifier:
-  guardianName: 세라
+  m_EditorClassIdentifier: 
+  guardianName: "\uC138\uB77C"
   rarity: 1
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: cdc1dfeb013f64e42befe313bd26c28d, type: 3}
   range: 2
   attackSpeed: 0.8
   attackType: 2
   attackPower: 16
   areaRadius: 1
-  specialEffectDescription: 피격 대상 이동속도 -20%, 2초
+  specialEffectDescription: "\uD53C\uACA9 \uB300\uC0C1 \uC774\uB3D9\uC18D\uB3C4 -20%, 2\uCD08"
   shopCost: 100

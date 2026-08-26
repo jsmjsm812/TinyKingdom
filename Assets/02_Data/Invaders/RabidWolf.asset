@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
   m_Name: RabidWolf
-  m_EditorClassIdentifier:
-  invaderName: 미쳐버린 늑대
+  m_EditorClassIdentifier: 
+  invaderName: "\uBBF8\uCCD0\uBC84\uB9B0 \uB291\uB300"
   tier: 1
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 7d5efd9a6287cb94dabf36711785eb21, type: 3}
   baseHp: 35
   moveSpeed: 1.9
   wardDamage: 2

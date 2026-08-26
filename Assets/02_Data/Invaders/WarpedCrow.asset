@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
   m_Name: WarpedCrow
-  m_EditorClassIdentifier:
-  invaderName: 일그러진 까마귀
+  m_EditorClassIdentifier: 
+  invaderName: "\uC77C\uADF8\uB7EC\uC9C4 \uAE4C\uB9C8\uADC0"
   tier: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 86c7b37a6d30ff24ea8bebbe659d70e8, type: 3}
   baseHp: 20
   moveSpeed: 1.2
   wardDamage: 1

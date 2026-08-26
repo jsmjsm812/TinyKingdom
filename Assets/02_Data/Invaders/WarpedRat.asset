@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
   m_Name: WarpedRat
-  m_EditorClassIdentifier:
-  invaderName: 일그러진 쥐
+  m_EditorClassIdentifier: 
+  invaderName: "\uC77C\uADF8\uB7EC\uC9C4 \uC950"
   tier: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 7e6c6fad76425e24780ae08628c7174e, type: 3}
   baseHp: 15
   moveSpeed: 1.5
   wardDamage: 1
