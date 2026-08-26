@@ -139,7 +139,7 @@ namespace WitchHour.EditorTools
             go.GetComponent<Image>().color = new Color(0.8f, 0.2f, 0.2f);
 
             GameObject prefab = PrefabUtility.SaveAsPrefabAsset(go, prefabPath);
-            Object.DestroyImmediate(go);
+            UnityEngine.Object.DestroyImmediate(go);
 
             return prefab.GetComponent<InvaderUnit>();
         }
