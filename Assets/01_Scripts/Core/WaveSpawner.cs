@@ -85,8 +85,8 @@ namespace WitchHour.Core
         {
             float totalHpMultiplier = waveHpMultiplier * currentZone.hpMultiplier;
 
-            float laneHalfWidthPixels = (FieldConstants.LaneWidthUnits / 2f) * FieldConstants.UnitSize;
-            float spawnX = UnityEngine.Random.Range(-laneHalfWidthPixels, laneHalfWidthPixels);
+            // 통로가 하나뿐이라 침입자는 전부 중앙 한 줄로 내려온다 (좌우로 흩어지지 않음).
+            const float spawnX = 0f;
             float topY = (FieldConstants.LaneLengthUnits / 2f) * FieldConstants.UnitSize;
             float wardY = -topY;
 
