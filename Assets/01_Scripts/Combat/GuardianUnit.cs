@@ -12,11 +12,15 @@ namespace WitchHour.Combat
     [RequireComponent(typeof(RectTransform))]
     public class GuardianUnit : MonoBehaviour
     {
+        // MergeSystem이 로스터/필드 어디에 있든 성급별로 3기를 찾아야 해서 InvaderUnit과 같은 패턴으로 노출한다.
+        public static readonly List<GuardianUnit> ActiveUnits = new List<GuardianUnit>();
+
         private static readonly float[] StarDamageMultiplier = { 1f, 1.8f, 3.0f };
 
         public GuardianData Data { get; private set; }
         public int StarLevel { get; private set; } = 1;
         public Vector2 FieldPosition { get; private set; }
+        public GridSlot CurrentSlot { get; private set; }
 
         private float _attackTimer;
 
@@ -27,9 +31,25 @@ namespace WitchHour.Combat
             _attackTimer = 0f;
         }
 
-        public void SetFieldPosition(Vector2 position)
+        /// <summary>GridSlot.TryPlace에서 호출 — 필드 좌표 갱신 + 합성 대상 목록 등록.</summary>
+        public void OnPlaced(GridSlot slot)
         {
-            FieldPosition = position;
+            CurrentSlot = slot;
+            FieldPosition = slot.FieldPosition;
+            if (!ActiveUnits.Contains(this))
+                ActiveUnits.Add(this);
+        }
+
+        /// <summary>합성으로 소모되거나 명부로 회수될 때 호출.</summary>
+        public void RemoveFromField()
+        {
+            ActiveUnits.Remove(this);
+            if (CurrentSlot != null)
+            {
+                CurrentSlot.Clear();
+                CurrentSlot = null;
+            }
+            Destroy(gameObject);
         }
 
         public void SetStarLevel(int starLevel)

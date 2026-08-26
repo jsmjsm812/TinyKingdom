@@ -31,7 +31,7 @@ namespace WitchHour.Field
             unit.transform.SetParent(transform, false);
             var rect = unit.GetComponent<RectTransform>();
             if (rect != null) rect.anchoredPosition = Vector2.zero;
-            unit.SetFieldPosition(FieldPosition);
+            unit.OnPlaced(this);
             return true;
         }
 
