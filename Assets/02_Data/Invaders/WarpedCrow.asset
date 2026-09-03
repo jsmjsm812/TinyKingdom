@@ -12,10 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
   m_Name: WarpedCrow
   m_EditorClassIdentifier: 
-  invaderName: "\uC77C\uADF8\uB7EC\uC9C4 \uAE4C\uB9C8\uADC0"
+  invaderName: \uACE0\uBE14\uB9B0 \uC815\uCC30\uBCD1
   tier: 0
-  sprite: {fileID: 21300000, guid: 86c7b37a6d30ff24ea8bebbe659d70e8, type: 3}
-  baseHp: 20
+  sprite: {fileID: 21300000, guid: b2c4e170826e0c34ea67b719e21402e5, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: b2c4e170826e0c34ea67b719e21402e5, type: 3}
+  - {fileID: 21300000, guid: 697f1f779d703b94798b2ec016134315, type: 3}
+  - {fileID: 21300000, guid: 2a79b81f53aa78b478d3de0b5f71ed4e, type: 3}
+  - {fileID: 21300000, guid: 1c5f91c2dfec9cb4a8b643f441915f7a, type: 3}
+  walkFrames:
+  - {fileID: 21300000, guid: 6c71c701fe4016f40959b67933fc8ed5, type: 3}
+  - {fileID: 21300000, guid: c808266c633a636448d68f9480c6b29d, type: 3}
+  - {fileID: 21300000, guid: 80ed3f9f2be40294c911e60c4f210575, type: 3}
+  - {fileID: 21300000, guid: e12d35a394aa0844db1ec3d81639056c, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: 4fc143bfad91c2148924a06eed519fc1, type: 3}
+  - {fileID: 21300000, guid: 9df97d846f5d49543970d74c57bda8e4, type: 3}
+  - {fileID: 21300000, guid: f50351bd6e7970a42a8d4e6cbe5173b7, type: 3}
+  - {fileID: 21300000, guid: a6d8d1a59f5abcb4482d6601f42d7f43, type: 3}
+  visualScale: 2.6
+  baseHp: 200
   moveSpeed: 1.2
   wardDamage: 1
   manaCrystalReward: 2

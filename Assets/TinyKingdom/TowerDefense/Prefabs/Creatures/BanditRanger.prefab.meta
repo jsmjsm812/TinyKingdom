@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f350bd973f9347e46869efb974777b8e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Creatures/BanditRanger.prefab
+  uploadId: 983070

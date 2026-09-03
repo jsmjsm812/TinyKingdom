@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 51a425a0558df71498d79745e844c8a9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Buildings/Castle.prefab
+  uploadId: 983070

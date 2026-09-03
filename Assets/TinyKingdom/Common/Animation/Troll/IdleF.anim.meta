@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0bd564b4c5f64434cb9230f2b07d00e7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Animation/Troll/IdleF.anim
+  uploadId: 983070

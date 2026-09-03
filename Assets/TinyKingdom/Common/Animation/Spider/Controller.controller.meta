@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f80595410505f314287bf6e9675541e4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Animation/Spider/Controller.controller
+  uploadId: 983070

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd96abb29d6bfee49a7c9a4e1caff890, type: 3}
   m_Name: Zone3_Greenhouse
   m_EditorClassIdentifier:
-  zoneName: 온실
+  zoneName: 마왕의 영지
   zoneIndex: 3
   hpMultiplier: 2
   speedMultiplier: 1.2
   manaMultiplier: 1.6
   bossInvader: {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c10, type: 2}
-  specialRuleDescription: 웨이브 시작마다 결계 HP -1
+  specialRuleDescription: 웨이브 시작마다 성벽 HP -1
   unlockedGuardians:
   - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c07, type: 2}
   - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c09, type: 2}

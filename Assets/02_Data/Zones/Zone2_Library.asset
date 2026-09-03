@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd96abb29d6bfee49a7c9a4e1caff890, type: 3}
   m_Name: Zone2_Library
   m_EditorClassIdentifier:
-  zoneName: 도서관 뒷마당
+  zoneName: 폐허 성채
   zoneIndex: 2
   hpMultiplier: 1.5
   speedMultiplier: 1.1
@@ -20,6 +20,5 @@ MonoBehaviour:
   bossInvader: {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c0f, type: 2}
   specialRuleDescription: 웨이브 5~7 안개(시야 가림)
   unlockedGuardians:
-  - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c04, type: 2}
   - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c06, type: 2}
   - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c08, type: 2}

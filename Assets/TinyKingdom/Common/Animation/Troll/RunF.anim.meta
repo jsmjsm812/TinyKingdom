@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 576831e6102d5e242b915c8432021a1c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Animation/Troll/RunF.anim
+  uploadId: 983070

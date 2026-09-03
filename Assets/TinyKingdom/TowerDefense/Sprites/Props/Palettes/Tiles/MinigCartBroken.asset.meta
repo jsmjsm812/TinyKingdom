@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 71b82e57c8e2f7049b1a1b4f954f415a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Sprites/Props/Palettes/Tiles/MinigCartBroken.asset
+  uploadId: 983070

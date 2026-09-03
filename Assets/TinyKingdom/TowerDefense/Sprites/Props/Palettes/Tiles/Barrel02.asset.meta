@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bcaadc78229e2be4c994835c28ad131a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Sprites/Props/Palettes/Tiles/Barrel02.asset
+  uploadId: 983070

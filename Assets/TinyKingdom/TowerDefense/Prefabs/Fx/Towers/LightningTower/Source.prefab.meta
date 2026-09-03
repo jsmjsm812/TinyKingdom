@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1e5805b5b8a8c1d4497a97ea275257bc
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Fx/Towers/LightningTower/Source.prefab
+  uploadId: 983070

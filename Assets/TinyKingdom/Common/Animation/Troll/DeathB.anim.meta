@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 45d05a2a3378ede4b88d73820500bce0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Animation/Troll/DeathB.anim
+  uploadId: 983070

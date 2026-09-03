@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ae2b0c1541e39b0468227b5cccede9e3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Scripts/Scene/GridSnap.cs
+  uploadId: 983070

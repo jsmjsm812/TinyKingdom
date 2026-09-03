@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 731b21b14be84e9418d6842e54c33444
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Buildings/CannonTower2.prefab
+  uploadId: 983070

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f3796ddf877d5264cbfb2cb7079358f9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Sprites/Props/Palettes/Tiles/ScareCrow.asset
+  uploadId: 983070

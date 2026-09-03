@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6e1830b0f8e4c55419cb24eed433e5be
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Scripts/Fx/FxManager.cs
+  uploadId: 983070

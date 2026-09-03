@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d22e8edfeb6a29e438817781893212c6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Sprites/Props/Palettes/Tiles/Tent01.asset
+  uploadId: 983070

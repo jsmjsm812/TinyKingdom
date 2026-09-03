@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using WitchHour.Core;
 
 namespace WitchHour.UI
 {
@@ -10,6 +11,7 @@ namespace WitchHour.UI
 
         public void OnClickAnywhere()
         {
+            AudioManager.Instance?.PlayButtonClick();
             SceneManager.LoadScene(homeScene);
         }
     }

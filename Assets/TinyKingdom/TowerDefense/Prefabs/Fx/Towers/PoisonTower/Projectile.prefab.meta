@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ff6e0df8b29873244bd4d868f14f535b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Fx/Towers/PoisonTower/Projectile.prefab
+  uploadId: 983070

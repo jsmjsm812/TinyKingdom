@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fac782f29ced740b33cc95ed205511, type: 3}
   m_Name: Lumi
   m_EditorClassIdentifier: 
-  guardianName: "\uB8E8\uBBF8"
+  guardianName: "\uBBFC\uBCD1"
   rarity: 0
-  portrait: {fileID: 21300000, guid: ff696fb3cb197f64e8809f5fafadb4ab, type: 3}
+  portrait: {fileID: 21300000, guid: 1787008dba3221a44a35acea6cafb20c, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: 1787008dba3221a44a35acea6cafb20c, type: 3}
+  - {fileID: 21300000, guid: 1ea0b7d0897e4b0478ced4dd4bcc7581, type: 3}
+  - {fileID: 21300000, guid: c2559814946ea0f4c8ce19e887f4322a, type: 3}
+  - {fileID: 21300000, guid: d93be1746e09a8e4494763dd984ddc69, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: 4d1a0a915b1a1754e947a433707ed4e2, type: 3}
+  - {fileID: 21300000, guid: 941d40d9540dbcc4ebc6f17b19cf4320, type: 3}
+  - {fileID: 21300000, guid: e3331b90ce3de4046b9141301d7068b3, type: 3}
+  - {fileID: 21300000, guid: 0dcb5c53a3ff27544b673e7523dbd55c, type: 3}
   range: 3
   attackSpeed: 1.2
   attackType: 0

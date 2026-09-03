@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: de2015584679a884e8f7716ab2ef3cbc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Animation/Humanoid/Front/AttackDownF.anim
+  uploadId: 983070

@@ -12,10 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
   m_Name: WarpedRat
   m_EditorClassIdentifier: 
-  invaderName: "\uC77C\uADF8\uB7EC\uC9C4 \uC950"
+  invaderName: \uACE0\uBE14\uB9B0 \uB3C4\uC801
   tier: 0
-  sprite: {fileID: 21300000, guid: 7e6c6fad76425e24780ae08628c7174e, type: 3}
-  baseHp: 15
+  sprite: {fileID: 21300000, guid: 160dc7b31367f8b4b96019a2a12502ad, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: 160dc7b31367f8b4b96019a2a12502ad, type: 3}
+  - {fileID: 21300000, guid: 4dd7de784de980b4c93ac8db3d27e0c4, type: 3}
+  - {fileID: 21300000, guid: 9dcf37acae8b11f428e6cd0ad9ebf84e, type: 3}
+  - {fileID: 21300000, guid: b28ea6eb61ee6e04d9ba8124549f477e, type: 3}
+  walkFrames:
+  - {fileID: 21300000, guid: d103413123c9a6649a0a264a25d76c32, type: 3}
+  - {fileID: 21300000, guid: 9a25c96336028be4eb34a4bf25896df3, type: 3}
+  - {fileID: 21300000, guid: 04b9a33ff99b5b143a4256e299776e1f, type: 3}
+  - {fileID: 21300000, guid: 47567be38f3548045a874f9c1dd0b07b, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: 260a1a0df86ff484caa3f44e5553c72f, type: 3}
+  - {fileID: 21300000, guid: 852c64f8ab3b6fe4d902f1b643eae660, type: 3}
+  - {fileID: 21300000, guid: 214dae880b66499438ff5eb3743d7a7f, type: 3}
+  - {fileID: 21300000, guid: aebfbf4cbc4f76a4597d93015f1fff5f, type: 3}
+  visualScale: 2.6
+  baseHp: 150
   moveSpeed: 1.5
   wardDamage: 1
   manaCrystalReward: 2

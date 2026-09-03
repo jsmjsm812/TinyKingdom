@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fac782f29ced740b33cc95ed205511, type: 3}
   m_Name: Selene
   m_EditorClassIdentifier: 
-  guardianName: "\uC140\uB808\uB124"
+  guardianName: "\uBE59\uACB0\uC0AC"
   rarity: 2
-  portrait: {fileID: 21300000, guid: 2ad771ead165da44a934c1243c9402b5, type: 3}
+  portrait: {fileID: 21300000, guid: d4dbb050e7735924da85fe5b5ccdfff2, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: d4dbb050e7735924da85fe5b5ccdfff2, type: 3}
+  - {fileID: 21300000, guid: ef269c881bf52f74cb07a31281940c16, type: 3}
+  - {fileID: 21300000, guid: 4ed4b15267227a4499d5748c07f8d95d, type: 3}
+  - {fileID: 21300000, guid: 8e9aa0a006b4e2e4f9fce360e21a45f0, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: b697df7e99a0dd6469cc5619417f99dd, type: 3}
+  - {fileID: 21300000, guid: 23f565cd27c65a54fb275066d382fa9d, type: 3}
+  - {fileID: 21300000, guid: e561f8a1637d5ba4e9df363b0d207c51, type: 3}
+  - {fileID: 21300000, guid: 211623bc2297673418b8fc3b9451eeff, type: 3}
   range: 4
   attackSpeed: 1.2
   attackType: 3

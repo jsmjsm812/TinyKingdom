@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fac782f29ced740b33cc95ed205511, type: 3}
   m_Name: Dori
   m_EditorClassIdentifier: 
-  guardianName: "\uB3C4\uB9AC"
+  guardianName: "\uC57C\uB9CC\uC804\uC0AC"
   rarity: 0
-  portrait: {fileID: 21300000, guid: 3749e65bf4fb3da4cae76a24dfac89e5, type: 3}
+  portrait: {fileID: 21300000, guid: e6cd5e8b2cc9ce647a9e9fef17b43ace, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: e6cd5e8b2cc9ce647a9e9fef17b43ace, type: 3}
+  - {fileID: 21300000, guid: c0036d246428a9e4bb1831040391443f, type: 3}
+  - {fileID: 21300000, guid: 4721554e437097247bf9c9bc0e57679e, type: 3}
+  - {fileID: 21300000, guid: e2af2af55c809924c9b21b5394b5c8fe, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: c4704818730f6b74abcf20719b01b154, type: 3}
+  - {fileID: 21300000, guid: f8312b696a980c24494195f26f5b8aca, type: 3}
+  - {fileID: 21300000, guid: 284036a3791469a459c641c4f485b078, type: 3}
+  - {fileID: 21300000, guid: 758550575f5c9804d8c117bdc7d90965, type: 3}
   range: 3.5
   attackSpeed: 0.7
   attackType: 0

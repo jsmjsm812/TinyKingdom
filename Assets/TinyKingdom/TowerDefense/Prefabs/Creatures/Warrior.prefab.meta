@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a1e81976d3d460d41ab2dfd0b0818b40
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Creatures/Warrior.prefab
+  uploadId: 983070

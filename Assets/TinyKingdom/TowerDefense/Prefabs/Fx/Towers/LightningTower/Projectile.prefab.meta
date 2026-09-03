@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a2234110e0ad63f47894f9b85f45af6c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Fx/Towers/LightningTower/Projectile.prefab
+  uploadId: 983070

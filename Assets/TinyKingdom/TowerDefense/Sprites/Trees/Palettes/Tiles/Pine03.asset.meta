@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6c84af8cc626666499558dfba38e5267
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Sprites/Trees/Palettes/Tiles/Pine03.asset
+  uploadId: 983070

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 65574426d0d84d24886f70f5366afadf
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Creatures/Mage.prefab
+  uploadId: 983070

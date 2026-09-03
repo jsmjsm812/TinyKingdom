@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fac782f29ced740b33cc95ed205511, type: 3}
   m_Name: Irene
   m_EditorClassIdentifier: 
-  guardianName: "\uC774\uB808\uB124"
+  guardianName: "\uBA85\uC0AC\uC218"
   rarity: 1
-  portrait: {fileID: 21300000, guid: 32f66e3a0af518241acb66c675388026, type: 3}
+  portrait: {fileID: 21300000, guid: b673dcc5fe8212a428477f98e8b0185c, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: b673dcc5fe8212a428477f98e8b0185c, type: 3}
+  - {fileID: 21300000, guid: bca880db5b6d52d4ab477d987ae8b630, type: 3}
+  - {fileID: 21300000, guid: f53b40ee2fd5d4340bab8086b5e11101, type: 3}
+  - {fileID: 21300000, guid: b7ed1f67c7b8e2a4fbd30050d895449b, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: aa25911ccf347074bb601f7a3fbc96ec, type: 3}
+  - {fileID: 21300000, guid: 521ef193548ec1b4fb6f97a49fa42dd0, type: 3}
+  - {fileID: 21300000, guid: 99c0f88771a48e7479f39f0302a3f6a0, type: 3}
+  - {fileID: 21300000, guid: 879993f6a2da51645bbb55f1a141605a, type: 3}
   range: 4
   attackSpeed: 1
   attackType: 3

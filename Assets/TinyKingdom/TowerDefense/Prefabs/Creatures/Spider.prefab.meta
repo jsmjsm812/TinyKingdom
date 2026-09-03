@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: aec1adb9f5544a74fab0ce4ef32a389c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Creatures/Spider.prefab
+  uploadId: 983070

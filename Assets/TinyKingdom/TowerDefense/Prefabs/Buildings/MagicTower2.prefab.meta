@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 531b030fa5ffa9a4b8db09c69b97529c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Buildings/MagicTower2.prefab
+  uploadId: 983070

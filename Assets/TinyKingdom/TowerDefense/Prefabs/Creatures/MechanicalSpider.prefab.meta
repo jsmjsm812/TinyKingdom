@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 57631ef0bd780a548a6529a0994f66d1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Creatures/MechanicalSpider.prefab
+  uploadId: 983070

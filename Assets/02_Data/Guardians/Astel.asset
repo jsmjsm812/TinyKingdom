@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fac782f29ced740b33cc95ed205511, type: 3}
   m_Name: Astel
   m_EditorClassIdentifier: 
-  guardianName: "\uC544\uC2A4\uD154"
+  guardianName: "\uB300\uB9C8\uBC95\uC0AC"
   rarity: 2
-  portrait: {fileID: 21300000, guid: f4a5a944fd910724c9b7e92e0ed8e96d, type: 3}
+  portrait: {fileID: 21300000, guid: a2b2ba9479ce7f649a655210c676f805, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: a2b2ba9479ce7f649a655210c676f805, type: 3}
+  - {fileID: 21300000, guid: 882a8d529ac3ff344ba15edd5c14f820, type: 3}
+  - {fileID: 21300000, guid: efff2c5a525a9fd41b0d02e62acec9a9, type: 3}
+  - {fileID: 21300000, guid: a1ebbbadb8a48cf4c9415a0134ea239a, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: 0aa721161843db941be1f30de5b3d5f9, type: 3}
+  - {fileID: 21300000, guid: 37337ba9c9513e74c9dcc18601aaa3a2, type: 3}
+  - {fileID: 21300000, guid: c693f238d7093ae4faad3f8684d6c858, type: 3}
+  - {fileID: 21300000, guid: bd9fc8b565e8fd845940254e98906588, type: 3}
   range: 3
   attackSpeed: 1.5
   attackType: 2

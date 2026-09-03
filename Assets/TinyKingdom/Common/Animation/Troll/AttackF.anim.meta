@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4e33b97ddf02b83498b3a1f2860cedbb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Animation/Troll/AttackF.anim
+  uploadId: 983070

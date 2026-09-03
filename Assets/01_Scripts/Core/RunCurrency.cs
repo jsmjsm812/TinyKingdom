@@ -4,13 +4,20 @@ using UnityEngine;
 namespace WitchHour.Core
 {
     /// <summary>
-    /// 출전 한정 마나결정. 소환 상점(2주차)이 아직 없어서 지금은 적립만 되지만,
-    /// 상점 붙일 때 이 클래스만 참조하면 되도록 미리 분리해둔다.
+    /// 출전 한정 금화. 용병 주점에서 용사를 고용하는 데 쓰인다.
     /// </summary>
     public class RunCurrency : MonoBehaviour
     {
+        [Tooltip("출전 시작 보너스 (GDD.md 9번: 200)")]
+        [SerializeField] private int startingCurrency = 200;
+
         public int ManaCrystals { get; private set; }
         public event Action<int> OnChanged;
+
+        private void Awake()
+        {
+            ManaCrystals = startingCurrency;
+        }
 
         public void Add(int amount)
         {

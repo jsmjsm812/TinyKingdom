@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 740775977f4fad744805b1fa702d4429
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Creatures/BanditScout.prefab
+  uploadId: 983070

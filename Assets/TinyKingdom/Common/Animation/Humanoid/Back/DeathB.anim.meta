@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 076436f6de9654b4197a5ace923ced36
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Animation/Humanoid/Back/DeathB.anim
+  uploadId: 983070

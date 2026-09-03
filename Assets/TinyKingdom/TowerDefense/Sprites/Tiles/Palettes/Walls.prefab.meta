@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d151aaf0a60074d4c8ab0000958e3f60
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Sprites/Tiles/Palettes/Walls.prefab
+  uploadId: 983070

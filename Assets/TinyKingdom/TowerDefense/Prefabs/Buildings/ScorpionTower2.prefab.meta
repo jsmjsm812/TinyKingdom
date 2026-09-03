@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b267b30d98e1d134488a17a6d94995ce
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Buildings/ScorpionTower2.prefab
+  uploadId: 983070

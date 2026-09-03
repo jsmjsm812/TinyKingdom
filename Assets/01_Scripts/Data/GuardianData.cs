@@ -14,6 +14,10 @@ namespace WitchHour.Data
         public GuardianRarity rarity;
         public Sprite portrait;
 
+        [Header("배틀 스프라이트 (SpumBattleSpriteBaker로 자동 생성됨)")]
+        public Sprite[] idleFrames;
+        public Sprite[] actionFrames; // 공격 모션
+
         [Header("전투 스탯 (1성 기준, GDD.md 표 그대로)")]
         public float range;
         [Tooltip("초당 공격 횟수")]

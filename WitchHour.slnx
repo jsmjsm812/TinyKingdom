@@ -1,4 +1,7 @@
 ﻿<Solution>
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="TinyKingdom.TowerDefense.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="TinyKingdom.Common.csproj" />
+  <Project Path="TinyKingdom.TowerDefense.Editor.csproj" />
 </Solution>

@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fac782f29ced740b33cc95ed205511, type: 3}
   m_Name: Sera
   m_EditorClassIdentifier: 
-  guardianName: "\uC138\uB77C"
+  guardianName: "\uC5F0\uAE08\uC220\uC0AC"
   rarity: 1
-  portrait: {fileID: 21300000, guid: cdc1dfeb013f64e42befe313bd26c28d, type: 3}
+  portrait: {fileID: 21300000, guid: 7346d221f9a01d74ebd20f1c83aaeabf, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: 7346d221f9a01d74ebd20f1c83aaeabf, type: 3}
+  - {fileID: 21300000, guid: c0e311b1f033b684488627f0c005e2ae, type: 3}
+  - {fileID: 21300000, guid: eeec0658bb8b39a478eabac610c1c821, type: 3}
+  - {fileID: 21300000, guid: bb08dfd00c1d04e49b5b150dedd53bfc, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: e0b234eb6ef98dc4abe9861eb9501ad7, type: 3}
+  - {fileID: 21300000, guid: 21d8f4c9ef4fe7f4cbf9941c010d21ca, type: 3}
+  - {fileID: 21300000, guid: dbe6b7e89e08cc04ba21d9f7b680f607, type: 3}
+  - {fileID: 21300000, guid: 06b283c01e7345f47869bf9d748918a4, type: 3}
   range: 2
   attackSpeed: 0.8
   attackType: 2

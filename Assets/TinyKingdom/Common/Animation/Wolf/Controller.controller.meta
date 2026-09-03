@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: aaa9eddca0b4caf4cb7de4145f131c9b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Animation/Wolf/Controller.controller
+  uploadId: 983070

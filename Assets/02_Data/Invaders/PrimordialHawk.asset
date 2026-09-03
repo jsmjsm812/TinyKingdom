@@ -12,10 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
   m_Name: PrimordialHawk
   m_EditorClassIdentifier: 
-  invaderName: "\uD0DC\uACE0\uC758 \uB9E4"
+  invaderName: \uC0B0\uC801 \uB450\uBAA9
   tier: 2
-  sprite: {fileID: 21300000, guid: 0711d58e7cc447c46957884e00d34716, type: 3}
-  baseHp: 600
+  sprite: {fileID: 21300000, guid: dd1df88a647c3d94b95d4aa52527edb1, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: dd1df88a647c3d94b95d4aa52527edb1, type: 3}
+  - {fileID: 21300000, guid: 378224f21d2e08d4f9842aa05c876ad8, type: 3}
+  - {fileID: 21300000, guid: 56ae71a2089748f4cb633a52d40558a3, type: 3}
+  - {fileID: 21300000, guid: 9b6acb12a50e8b546950747cc5628be6, type: 3}
+  walkFrames:
+  - {fileID: 21300000, guid: 5d2e63828a0807f4a9d5c826167ae0c6, type: 3}
+  - {fileID: 21300000, guid: 125aac9a45b444c48bab76e175b01065, type: 3}
+  - {fileID: 21300000, guid: 5ef6688abfddabd46aee577f264494b8, type: 3}
+  - {fileID: 21300000, guid: 3c756be290d79ef41874972afa0107ba, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: e8ca9a83d13219342a7052ff8c5105e9, type: 3}
+  - {fileID: 21300000, guid: 82f2a3ddd17d68b45a07fcbaf923819c, type: 3}
+  - {fileID: 21300000, guid: f5355662bbcd06242bd00613589e2de8, type: 3}
+  - {fileID: 21300000, guid: 456330ae002ba6141a3d0c6cdfd46af0, type: 3}
+  visualScale: 2.7
+  baseHp: 1800
   moveSpeed: 1
   wardDamage: 4
   manaCrystalReward: 45

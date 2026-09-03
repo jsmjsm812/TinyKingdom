@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace WitchHour.Core
 {
-    /// <summary>결계(학원) HP. GDD.md 3번: 기본 20.</summary>
+    /// <summary>성벽(왕국 성) HP. GDD.md 3번: 기본 20.</summary>
     public class WardHealth : MonoBehaviour
     {
         [SerializeField] private int maxHp = 20;
 
         public int CurrentHp { get; private set; }
+        public int MaxHp => maxHp;
         public bool IsDepleted => CurrentHp <= 0;
 
         public event Action<int, int> OnHpChanged; // (current, max)

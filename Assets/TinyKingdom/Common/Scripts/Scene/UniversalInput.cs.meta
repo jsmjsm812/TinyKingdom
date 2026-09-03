@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 61f9c48a090cbce43896ad64a0283e1a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Scripts/Scene/UniversalInput.cs
+  uploadId: 983070

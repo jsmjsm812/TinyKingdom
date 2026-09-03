@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using WitchHour.Core;
 using WitchHour.Data;
 
 namespace WitchHour.Shop
@@ -19,6 +20,10 @@ namespace WitchHour.Shop
         private void Awake()
         {
             foreach (var guardian in defaultUnlocked)
+                Unlock(guardian);
+
+            // 이전 출전에서 구역 클리어로 풀어둔 수호자(GameProgress, 세션 동안 유지)도 반영.
+            foreach (var guardian in GameProgress.UnlockedGuardians)
                 Unlock(guardian);
         }
 

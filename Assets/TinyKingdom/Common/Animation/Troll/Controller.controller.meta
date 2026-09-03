@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2eb90cbdfee78b24db948df337135e8c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Animation/Troll/Controller.controller
+  uploadId: 983070

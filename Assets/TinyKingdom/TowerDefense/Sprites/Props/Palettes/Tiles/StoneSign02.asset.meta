@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a343b41ff5ac5b24bbaac6e25e7bfaf0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Sprites/Props/Palettes/Tiles/StoneSign02.asset
+  uploadId: 983070

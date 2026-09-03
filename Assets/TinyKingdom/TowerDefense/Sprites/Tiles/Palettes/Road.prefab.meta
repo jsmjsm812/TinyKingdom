@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d195a5affa8ab6048b40c75ec9c5fd28
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Sprites/Tiles/Palettes/Road.prefab
+  uploadId: 983070

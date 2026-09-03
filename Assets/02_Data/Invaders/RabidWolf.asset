@@ -12,10 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
   m_Name: RabidWolf
   m_EditorClassIdentifier: 
-  invaderName: "\uBBF8\uCCD0\uBC84\uB9B0 \uB291\uB300"
+  invaderName: \uC804\uD22C \uC640\uADF8
   tier: 1
-  sprite: {fileID: 21300000, guid: 7d5efd9a6287cb94dabf36711785eb21, type: 3}
-  baseHp: 35
+  sprite: {fileID: 21300000, guid: 6eec9dedd7a93ab45b258a0139271639, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: 6eec9dedd7a93ab45b258a0139271639, type: 3}
+  - {fileID: 21300000, guid: ed79b840ccd7b394cbfd369d8ebd11fb, type: 3}
+  - {fileID: 21300000, guid: 10bef4ddbadfecd48a2629cf21f5c450, type: 3}
+  - {fileID: 21300000, guid: a91ceba4021f4f94fb79f9a8f910157f, type: 3}
+  walkFrames:
+  - {fileID: 21300000, guid: 5c8040dc28259894aaed024beab285da, type: 3}
+  - {fileID: 21300000, guid: 558ab5ff1917cbf4597b72f614290e9e, type: 3}
+  - {fileID: 21300000, guid: fb39dc4eb5850c64f9d2ea3b19378bd5, type: 3}
+  - {fileID: 21300000, guid: 72a9a56e329e11c4999fdc5be3f4ba0a, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: 21f22f04efc8d6b4cb1f68484f7a6566, type: 3}
+  - {fileID: 21300000, guid: 92aad19588a3edd40ab524458c574ac8, type: 3}
+  - {fileID: 21300000, guid: dc884c89793bb624e814e557d7f3f13b, type: 3}
+  - {fileID: 21300000, guid: ce82915915f923f4c85705283433d81a, type: 3}
+  visualScale: 2.7
+  baseHp: 300
   moveSpeed: 1.9
   wardDamage: 2
   manaCrystalReward: 5

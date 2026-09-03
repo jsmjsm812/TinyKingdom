@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a23782c2bc875b348a67d7b5489fe930
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Fx/Common/Death.prefab
+  uploadId: 983070

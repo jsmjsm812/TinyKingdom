@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2e13e3ca7e4231049ae37e05ca3a41de
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Scripts/Creature/FaceExpressions.cs
+  uploadId: 983070

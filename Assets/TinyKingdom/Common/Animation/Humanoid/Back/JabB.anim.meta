@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8b1de68565060b149848e574abd53fd1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Animation/Humanoid/Back/JabB.anim
+  uploadId: 983070

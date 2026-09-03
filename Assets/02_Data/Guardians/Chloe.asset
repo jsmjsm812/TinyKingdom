@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fac782f29ced740b33cc95ed205511, type: 3}
   m_Name: Chloe
   m_EditorClassIdentifier: 
-  guardianName: "\uD074\uB85C\uC5D0"
+  guardianName: "\uB9C8\uB140"
   rarity: 1
-  portrait: {fileID: 21300000, guid: 415c8686982dcbf4f8fe953fa06d1c5c, type: 3}
+  portrait: {fileID: 21300000, guid: df5c57499cf6a81499e5a62290006d5f, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: df5c57499cf6a81499e5a62290006d5f, type: 3}
+  - {fileID: 21300000, guid: 2a246325d2363a44e806307fdeefd9e0, type: 3}
+  - {fileID: 21300000, guid: 919306f76790ca24797c8a6a53f1bc27, type: 3}
+  - {fileID: 21300000, guid: 3b83fdda6aef7af4bbbcd9854d7cdaf3, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: e3ae0610a026dff48ab702c6008a8e90, type: 3}
+  - {fileID: 21300000, guid: a8abba6bf7a307445a087be267ba72fa, type: 3}
+  - {fileID: 21300000, guid: c40b04e5763dd554992f5b6246dfdb02, type: 3}
+  - {fileID: 21300000, guid: c736906b6706e0d41bab46e0dfa7e011, type: 3}
   range: 3
   attackSpeed: 0.5
   attackType: 4

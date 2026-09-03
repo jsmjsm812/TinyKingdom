@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fd7ad579096c7b9448643ed755d60657
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Fx/Towers/FireTower/Projectile.prefab
+  uploadId: 983070

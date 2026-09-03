@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 11da1b9a31eb9ae4f8c988470198bd7c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Fx/Towers/ScorpionTower/Explosion.prefab
+  uploadId: 983070

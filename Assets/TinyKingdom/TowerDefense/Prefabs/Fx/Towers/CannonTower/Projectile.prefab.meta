@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e2fdc0ad673f99141bff5cdb1eba3b84
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Fx/Towers/CannonTower/Projectile.prefab
+  uploadId: 983070

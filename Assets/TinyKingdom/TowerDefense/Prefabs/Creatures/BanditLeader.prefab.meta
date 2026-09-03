@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3f52da80f4414934bb4213de70b52a04
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Creatures/BanditLeader.prefab
+  uploadId: 983070

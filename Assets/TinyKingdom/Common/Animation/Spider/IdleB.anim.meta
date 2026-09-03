@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8ec2819b04fd84a418cb8c099e81247c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Animation/Spider/IdleB.anim
+  uploadId: 983070

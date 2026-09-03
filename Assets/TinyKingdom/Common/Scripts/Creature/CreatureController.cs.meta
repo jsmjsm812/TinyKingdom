@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: fcc1275600f7e3540888282d5dcad7b4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/Common/Scripts/Creature/CreatureController.cs
+  uploadId: 983070

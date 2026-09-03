@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 09f91fd83951ad74f96c64728c34e9bb
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Scripts/TinyKingdom.TowerDefense.asmdef
+  uploadId: 983070

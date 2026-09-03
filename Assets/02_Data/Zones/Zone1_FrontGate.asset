@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd96abb29d6bfee49a7c9a4e1caff890, type: 3}
   m_Name: Zone1_FrontGate
   m_EditorClassIdentifier:
-  zoneName: 정문 앞뜰
+  zoneName: 왕국 변경
   zoneIndex: 1
-  hpMultiplier: 1
+  hpMultiplier: 1.15
   speedMultiplier: 1
   manaMultiplier: 1
   bossInvader: {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c0e, type: 2}
-  specialRuleDescription: 없음(튜토리얼)
+  specialRuleDescription: 없음(입문)
   unlockedGuardians:
-  - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c03, type: 2}
   - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c05, type: 2}

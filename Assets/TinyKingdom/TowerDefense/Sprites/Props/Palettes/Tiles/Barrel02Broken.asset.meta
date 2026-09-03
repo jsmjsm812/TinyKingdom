@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cb07ac15b4a8a224e9c996f0f2368267
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Sprites/Props/Palettes/Tiles/Barrel02Broken.asset
+  uploadId: 983070

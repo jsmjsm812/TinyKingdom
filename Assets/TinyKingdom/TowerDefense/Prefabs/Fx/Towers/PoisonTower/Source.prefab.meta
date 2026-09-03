@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9e42bc55682452746ad04ba1cc787548
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Fx/Towers/PoisonTower/Source.prefab
+  uploadId: 983070

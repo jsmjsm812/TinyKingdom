@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c8d6e07c4abf4564fabee7d7ad94daa9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Buildings/UnderConstruction.prefab
+  uploadId: 983070

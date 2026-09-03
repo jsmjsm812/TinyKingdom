@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 19d98aeb145ac9d4f8cd7af3c51e56b1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Fx/Creatures/Bowman/Explosion.prefab
+  uploadId: 983070

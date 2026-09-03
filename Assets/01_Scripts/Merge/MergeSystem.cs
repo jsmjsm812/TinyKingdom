@@ -2,19 +2,18 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using WitchHour.Combat;
+using WitchHour.Core;
 using WitchHour.Data;
-using WitchHour.Shop;
 
 namespace WitchHour.Merge
 {
     /// <summary>
-    /// 같은 수호자 + 같은 성급이 명부·필드 어디에 있든(GDD.md 10번) 3기 모이면 자동으로 성급+1로 합쳐진다.
-    /// 로스터가 바뀌거나(구매) 필드 배치가 바뀔 때마다 TryMergeAll()을 호출해서 체크한다.
+    /// 필드에 같은 수호자 + 같은 성급이 3기 모이면(GDD.md 10번) 자동으로 성급+1로 합쳐진다.
+    /// 롤토체스처럼 구매하면 곧장 필드에 놓이므로, 배치 직후(GuardianPlacementManager.PlaceNew)
+    /// 한 번씩만 체크하면 충분하다 — 명부 같은 대기 단계가 없어서 다른 트리거는 필요 없다.
     /// </summary>
     public class MergeSystem : MonoBehaviour
     {
-        [SerializeField] private RosterManager roster;
-
         public void TryMergeAll()
         {
             while (TryMergeOnce())
@@ -25,52 +24,36 @@ namespace WitchHour.Merge
 
         private bool TryMergeOnce()
         {
-            var groups = new Dictionary<(GuardianData data, int star), List<object>>();
-
-            foreach (var entry in roster.Entries)
-                AddToGroup(groups, entry.Data, entry.StarLevel, entry);
+            var groups = new Dictionary<(GuardianData data, int star), List<GuardianUnit>>();
 
             foreach (var unit in GuardianUnit.ActiveUnits)
-                AddToGroup(groups, unit.Data, unit.StarLevel, unit);
+            {
+                var key = (unit.Data, unit.StarLevel);
+                if (!groups.TryGetValue(key, out var list))
+                    groups[key] = list = new List<GuardianUnit>();
+                list.Add(unit);
+            }
 
             foreach (var group in groups)
             {
                 if (group.Key.star >= 3) continue; // 최대 3성, GDD.md 10번
                 if (group.Value.Count < 3) continue;
 
-                MergeGroup(group.Key.data, group.Key.star, group.Value.Take(3).ToList());
+                MergeGroup(group.Key.star, group.Value.Take(3).ToList());
                 return true;
             }
             return false;
         }
 
-        private static void AddToGroup(
-            Dictionary<(GuardianData, int), List<object>> groups, GuardianData data, int star, object source)
+        private static void MergeGroup(int star, List<GuardianUnit> units)
         {
-            var key = (data, star);
-            if (!groups.TryGetValue(key, out var list))
-                groups[key] = list = new List<object>();
-            list.Add(source);
-        }
+            // 하나는 자리를 유지한 채 성급만 올리고, 나머지 둘은 필드에서 제거한다.
+            GuardianUnit keep = units[0];
+            for (int i = 1; i < units.Count; i++)
+                units[i].RemoveFromField();
 
-        private void MergeGroup(GuardianData data, int star, List<object> sources)
-        {
-            // 셋 중 하나라도 필드에 있었다면 그 슬롯을 그대로 승급시켜서 유지 — 필드 유닛이 갑자기 사라지는 걸 피함.
-            var fieldUnit = sources.OfType<GuardianUnit>().FirstOrDefault();
-
-            foreach (var source in sources)
-            {
-                if (source is RosterEntry entry)
-                    roster.Remove(entry);
-                else if (source is GuardianUnit unit && unit != fieldUnit)
-                    unit.RemoveFromField();
-            }
-
-            int newStar = star + 1;
-            if (fieldUnit != null)
-                fieldUnit.SetStarLevel(newStar);
-            else
-                roster.Add(data, newStar);
+            keep.SetStarLevel(star + 1);
+            AudioManager.Instance?.PlayMerge();
         }
     }
 }

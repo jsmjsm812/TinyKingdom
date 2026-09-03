@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9a6920f5eb1d6ea46946ae6d2346e3c3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Sprites/Props/Palettes/Tiles/ArmorRack.asset
+  uploadId: 983070

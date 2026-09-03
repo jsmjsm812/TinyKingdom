@@ -12,10 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429cf28f61eb77445ad57522bbebb3ec, type: 3}
   m_Name: PrimordialTiger
   m_EditorClassIdentifier: 
-  invaderName: "\uD0DC\uACE0\uC758 \uC0B0\uAD70"
+  invaderName: \uD2B8\uB864 \uB300\uC7A5
   tier: 2
-  sprite: {fileID: 21300000, guid: 59844a801aa9c384389981031b0ab1ca, type: 3}
-  baseHp: 900
+  sprite: {fileID: 21300000, guid: 45e5ba17797baea47b71bf7696e0cb3b, type: 3}
+  idleFrames:
+  - {fileID: 21300000, guid: 45e5ba17797baea47b71bf7696e0cb3b, type: 3}
+  - {fileID: 21300000, guid: bf0d4c51e322b514ca5eb0af72a7b0ee, type: 3}
+  - {fileID: 21300000, guid: 048c3d6ceb756c141ad21ac0765f55aa, type: 3}
+  - {fileID: 21300000, guid: dcbdf25a2d5beaa4b983bcd6e25657a3, type: 3}
+  walkFrames:
+  - {fileID: 21300000, guid: 348d5ec73952e6f4b85764b2fa08fd10, type: 3}
+  - {fileID: 21300000, guid: 49d359d5a7e26f242a4467326bee1252, type: 3}
+  - {fileID: 21300000, guid: 060a8646503240d4cbf2974a75f2f15f, type: 3}
+  - {fileID: 21300000, guid: 9adb05573ab28804284ca05e376d8dbd, type: 3}
+  actionFrames:
+  - {fileID: 21300000, guid: 88e53664946186c4eae879e8f894dfca, type: 3}
+  - {fileID: 21300000, guid: ddfb758c5ef1c0c46b7364802d17eb56, type: 3}
+  - {fileID: 21300000, guid: dae35f4c9b46b6945a256e6414f00c64, type: 3}
+  - {fileID: 21300000, guid: 796dc2718549537439d08c187fb11a57, type: 3}
+  visualScale: 2.7
+  baseHp: 2700
   moveSpeed: 0.9
   wardDamage: 7
   manaCrystalReward: 70

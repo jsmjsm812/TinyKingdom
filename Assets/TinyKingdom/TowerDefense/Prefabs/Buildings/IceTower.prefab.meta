@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 50b41192729e53b44b001037edee9ece
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Buildings/IceTower.prefab
+  uploadId: 983070

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 51edcf749f769984897f0a751419f244
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 346906
+  packageName: Fantasy Tower Defense
+  packageVersion: 1.6
+  assetPath: Assets/TinyKingdom/TowerDefense/Prefabs/Fx/Towers/ScorpionTower/Projectile.prefab
+  uploadId: 983070

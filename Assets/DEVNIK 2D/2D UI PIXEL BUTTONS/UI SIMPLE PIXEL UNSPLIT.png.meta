@@ -1,0 +1,948 @@
+fileFormatVersion: 2
+guid: a37e8466236089c45b610370218b5353
+AssetOrigin:
+  serializedVersion: 1
+  productId: 329983
+  packageName: Pixel Art UI Essentials
+  packageVersion: 1.0
+  assetPath: Assets/DEVNIK 2D/2D UI PIXEL BUTTONS/UI SIMPLE PIXEL UNSPLIT.png
+  uploadId: 780706
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5657742193472957528
+    second: IconPlaySmall
+  - first:
+      213: -2032819488056082211
+    second: IconPauseSmall
+  - first:
+      213: -8822727635190075478
+    second: IconSettingsSmall
+  - first:
+      213: 1012147751326203277
+    second: ButtonPlayText
+  - first:
+      213: 5387251307437373504
+    second: ButtonBlank1
+  - first:
+      213: -7787267807693785520
+    second: IconBackSmall
+  - first:
+      213: 3885173967796425920
+    second: IconSpeakerOnSmall
+  - first:
+      213: 1048048301529396357
+    second: IconSpeakerOffSmall
+  - first:
+      213: 3129642752014996889
+    second: ButtonLevelsText
+  - first:
+      213: 5255140101768835593
+    second: ButtonBlank2
+  - first:
+      213: 4835491912857918521
+    second: ButtonSettingsText
+  - first:
+      213: 2589382670902581480
+    second: ButtonBlank3Beveled
+  - first:
+      213: -7272127152058287228
+    second: IconPlayLarge
+  - first:
+      213: -3092476473291922799
+    second: IconPauseLarge
+  - first:
+      213: -1219051807478121266
+    second: IconSettingsLarge
+  - first:
+      213: 6462914920370448278
+    second: ButtonExitText
+  - first:
+      213: -7954757751567167211
+    second: ButtonPillGreen
+  - first:
+      213: 1191830865127314412
+    second: IconBackLarge
+  - first:
+      213: 5521521021210409236
+    second: IconSpeakerOnLarge
+  - first:
+      213: 5748479969013429975
+    second: IconSpeakerOffLarge
+  - first:
+      213: -5447090619912533137
+    second: PanelMenuTab
+  - first:
+      213: 9057196647695764669
+    second: PanelBlankSquareLarge
+  - first:
+      213: 5562104707216915601
+    second: ArrowRight
+  - first:
+      213: -1819579390153755118
+    second: ArrowLeft
+  - first:
+      213: -1431742058336711015
+    second: ButtonBlankSmallSquare
+  - first:
+      213: -5264949691217372704
+    second: PillVerticalSmall
+  - first:
+      213: 7269744591993604715
+    second: BarBlank1
+  - first:
+      213: -2334143838238530957
+    second: BarBlank2Beveled
+  - first:
+      213: -1665929760199330769
+    second: HandleTiny
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: IconPlaySmall
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 1281
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a31e477379ab71b0800000000000000
+      internalID: -5657742193472957528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconPauseSmall
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 1281
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd00de92279f9c3e0800000000000000
+      internalID: -2032819488056082211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconSettingsSmall
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 1281
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaf297ae5ff5f8580800000000000000
+      internalID: -8822727635190075478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonPlayText
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 1265
+        width: 366
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8d320a640fdb0e00800000000000000
+      internalID: 1012147751326203277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonBlank1
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 1265
+        width: 374
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 048309f658c53ca40800000000000000
+      internalID: 5387251307437373504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconBackSmall
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 1117
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056b39700311ee390800000000000000
+      internalID: -7787267807693785520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconSpeakerOnSmall
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 1117
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c4d911a329eae530800000000000000
+      internalID: 3885173967796425920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconSpeakerOffSmall
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 1117
+        width: 126
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5847c10a06a6b8e00800000000000000
+      internalID: 1048048301529396357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonLevelsText
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 1121
+        width: 366
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 995dabb5089be6b20800000000000000
+      internalID: 3129642752014996889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonBlank2
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 1113
+        width: 366
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90277d264120ee840800000000000000
+      internalID: 5255140101768835593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonSettingsText
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 973
+        width: 366
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93c9b24764e1b1340800000000000000
+      internalID: 4835491912857918521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonBlank3Beveled
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 969
+        width: 362
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 18, z: 18, w: 18}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e853bee1d55fe320800000000000000
+      internalID: 2589382670902581480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconPlayLarge
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 865
+        width: 134
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48bb71472e6341b90800000000000000
+      internalID: -7272127152058287228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconPauseLarge
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 865
+        width: 134
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 192ae2d38015515d0800000000000000
+      internalID: -3092476473291922799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconSettingsLarge
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 865
+        width: 134
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eccf77407de051fe0800000000000000
+      internalID: -1219051807478121266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonExitText
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 821
+        width: 366
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 697a04ac0e2e0b950800000000000000
+      internalID: 6462914920370448278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonPillGreen
+      rect:
+        serializedVersion: 2
+        x: 1133
+        y: 829
+        width: 270
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 40, y: 40, z: 40, w: 40}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 511dd8798f50b9190800000000000000
+      internalID: -7954757751567167211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconBackLarge
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 701
+        width: 134
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce392447bdb3a8010800000000000000
+      internalID: 1191830865127314412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconSpeakerOnLarge
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 701
+        width: 134
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41939115d1260ac40800000000000000
+      internalID: 5521521021210409236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IconSpeakerOffLarge
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 701
+        width: 134
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d67e773314b6cf40800000000000000
+      internalID: 5748479969013429975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PanelMenuTab
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 49
+        width: 606
+        height: 654
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6b40cce0fb0864b0800000000000000
+      internalID: -5447090619912533137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PanelBlankSquareLarge
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 257
+        width: 374
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 24, y: 24, z: 24, w: 24}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbcc3ce2d50a1bd70800000000000000
+      internalID: 9057196647695764669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrowRight
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 489
+        width: 154
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19c313d03c0903d40800000000000000
+      internalID: 5562104707216915601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrowLeft
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 337
+        width: 154
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21673496f2e8fb6e0800000000000000
+      internalID: -1819579390153755118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonBlankSmallSquare
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 61
+        width: 134
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99e8ad20f2e612ce0800000000000000
+      internalID: -1431742058336711015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PillVerticalSmall
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 53
+        width: 150
+        height: 146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e99fa696242fe6b0800000000000000
+      internalID: -5264949691217372704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarBlank1
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 169
+        width: 386
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6a889d803253e460800000000000000
+      internalID: 7269744591993604715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BarBlank2Beveled
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 105
+        width: 382
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3722023cb847b9fd0800000000000000
+      internalID: -2334143838238530957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandleTiny
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 17
+        width: 46
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f243196a5bd61e8e0800000000000000
+      internalID: -1665929760199330769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      A_LEFT: 701606609
+      A_RIGHT: -525753861
+      ArrowLeft: -1819579390153755118
+      ArrowRight: 5562104707216915601
+      BAR1: -1397424353
+      BAR2: 482729247
+      BAR3: -264501715
+      BAR4: -1312014013
+      BAR_BG: -2025207524
+      BAR_OUTLINE: -2127119051
+      BG_BAR2: -228637625
+      BG_UI: 1680676567
+      BarBlank1: 7269744591993604715
+      BarBlank2Beveled: -2334143838238530957
+      ButtonBlank1: 5387251307437373504
+      ButtonBlank2: 5255140101768835593
+      ButtonBlank3Beveled: 2589382670902581480
+      ButtonBlankSmallSquare: -1431742058336711015
+      ButtonExitText: 6462914920370448278
+      ButtonLevelsText: 3129642752014996889
+      ButtonPillGreen: -7954757751567167211
+      ButtonPlayText: 1012147751326203277
+      ButtonSettingsText: 4835491912857918521
+      EMPTY_1: 711346776
+      EXIT_2: -1641844568
+      EXIT_BAR: -630868318
+      EXIT_BUTTON: -949757489
+      EXIT_BUTTON_1: 1878393918
+      HandleTiny: -1665929760199330769
+      IconBackLarge: 1191830865127314412
+      IconBackSmall: -7787267807693785520
+      IconPauseLarge: -3092476473291922799
+      IconPauseSmall: -2032819488056082211
+      IconPlayLarge: -7272127152058287228
+      IconPlaySmall: -5657742193472957528
+      IconSettingsLarge: -1219051807478121266
+      IconSettingsSmall: -8822727635190075478
+      IconSpeakerOffLarge: 5748479969013429975
+      IconSpeakerOffSmall: 1048048301529396357
+      IconSpeakerOnLarge: 5521521021210409236
+      IconSpeakerOnSmall: 3885173967796425920
+      LEVEL_BAR: -1150674614
+      PAUSE_BUTTON: -708245964
+      PAUSE_BUTTON1: -713559888
+      PLAY BAR: -72823007
+      PLAY_BUTTON: 177566260
+      PLAY_BUTTON1: -716720451
+      PanelBlankSquareLarge: 9057196647695764669
+      PanelMenuTab: -5447090619912533137
+      PillVerticalSmall: -5264949691217372704
+      SCROLL: 1897795018
+      SETTINGS: 614323164
+      SETTINGS_1: -1398130153
+      SET_BAR: 590527004
+      SOUND_OFF: -1616128084
+      SOUND_OFF2: 1073997449
+      SOUND_ON: 433989029
+      SOUND_ON1: 1820693325
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

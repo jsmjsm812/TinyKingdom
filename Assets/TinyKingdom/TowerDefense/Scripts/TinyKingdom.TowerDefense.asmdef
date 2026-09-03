@@ -1,0 +1,16 @@
+{
+    "name": "TinyKingdom.TowerDefense",
+    "rootNamespace": "",
+    "references": [
+        "GUID:88c68b90ab23b9540ae336d519231164"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
