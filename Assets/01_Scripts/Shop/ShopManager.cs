@@ -52,6 +52,7 @@ namespace WitchHour.Shop
             CurrentOffers[slotIndex] = null;
             OnOffersChanged?.Invoke();
             AudioManager.Instance?.PlayPurchase();
+            GameProgress.IncrementSummons();
             return true;
         }
     }

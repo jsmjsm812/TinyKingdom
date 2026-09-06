@@ -9,6 +9,13 @@ namespace WitchHour.Field
     /// 선반을 잇는 세로 낙하(Drop) 2개는 꺾이는 바깥쪽 한 줄에만 슬롯을 세로로 쌓는다.
     /// 선반/낙하 좌표는 전부 FieldConstants를 참조하므로 LanePath.cs와 값이 항상 맞는다.
     /// </summary>
+    // [ExecuteAlways]: Awake()가 Play를 눌러야만 실행되면 Scene 화면엔 씬 파일에 저장된
+    // 예전 슬롯이 그대로 남아있고 Play를 눌러야만 최신 FieldConstants로 다시 그려진다 —
+    // "Scene 화면이랑 Play 화면 슬롯이 다르다" 피드백의 원인. 이 어트리뷰트를 붙이면 스크립트를
+    // 재컴파일하거나 씬을 열 때도(Play 여부와 무관하게) Awake가 실행돼 Scene 화면이 항상
+    // 최신 FieldConstants 기준으로 자동 갱신된다 — FieldConstants 값을 바꾸고 저장하면
+    // Play 없이도 바로 눈으로 확인/조절할 수 있다.
+    [ExecuteAlways]
     public class GridManager : MonoBehaviour
     {
         [Header("배치 대상 루트 (Canvas 하위 RectTransform)")]
@@ -28,23 +35,46 @@ namespace WitchHour.Field
         // 공격 이펙트가 슬롯/침입자와 같은 좌표계(FieldPosition)에 놓이도록 한다.
         public static RectTransform BattlefieldRoot { get; private set; }
 
+        // 존2 "붕괴된 슬롯" 기믹처럼 구역별로 슬롯을 잠가야 하는 코드(WaveSpawner)가 Slots
+        // 목록에 접근해야 하는데, GuardianUnit 프리팹과 마찬가지로 씬 오브젝트를 직접 참조할
+        // 방법이 없어서 BattlefieldRoot와 같은 패턴으로 정적 참조를 노출한다.
+        public static GridManager Instance { get; private set; }
+
         private void Awake()
         {
             BattlefieldRoot = battlefieldRoot;
-            // 씬을 껐다 켜거나(에디터 툴이 매번 OpenScene을 하니까 자주 일어남) 재컴파일되면
-            // _slots 리스트는 비어있는 새 인스턴스로 시작하는데, 씬 파일 자체엔 예전에 저장해둔
-            // Slot_* 오브젝트가 그대로 남아있다 — 그 상태에서 BuildGrid()가 그걸 모르고 위에
-            // 새로 22개를 또 만들어서 계속 쌓여왔다(하이어라키에 Slot_Left_0이 여러 번 보이던 원인).
-            // _slots가 아니라 battlefieldRoot 실제 자식을 직접 스캔해서 지워야 이 누적이 안 생긴다.
-            ClearExistingSlots();
+            Instance = this;
+
+            // 씬에 이미 슬롯이 있으면(직접 배치해서 저장한 것이든, 예전에 BuildGrid가 구워둔
+            // 것이든) 지우지 않고 그대로 쓴다 — "Scene에서 위치를 손으로 옮기면 게임에도
+            // 반영되게 하고 싶다" 요청에 맞춘 것. 슬롯이 하나도 없을 때만(처음 씬을 만들었을 때,
+            // 또는 아래 RebuildGrid로 일부러 초기화했을 때) FieldConstants 기준으로 새로 만든다.
+            var existing = battlefieldRoot != null ? battlefieldRoot.GetComponentsInChildren<GridSlot>(true) : null;
+            if (existing != null && existing.Length > 0)
+            {
+                _slots.Clear();
+                // GridSlot.Index/Side/Row는 직렬화되는 필드가 아니라 순수 런타임 프로퍼티라서
+                // (Init()으로만 세팅됨), 손으로 배치해 씬에 저장해둔 슬롯은 씬을 다시 열 때마다
+                // 전부 기본값(Index=0)으로 리셋된다 — 지금까진 아무도 Index로 슬롯을 찾을 일이
+                // 없어서 안 드러났는데, 체크포인트 복원(GuardianPlacementManager.PlaceAtSlot)이
+                // Index로 슬롯을 찾으면서 전부 0이라 첫 번째 슬롯만 찾아지는 버그가 됐다("그만하기
+                // 후 슬롯이 저장이 안 되어 있다" 피드백). 계층 순서(항상 안정적)로 Index를 다시
+                // 매겨서 저장 시점과 복원 시점에 항상 같은 슬롯이 같은 Index를 갖게 한다.
+                for (int i = 0; i < existing.Length; i++)
+                    existing[i].Init(i, existing[i].Side, existing[i].Row);
+                _slots.AddRange(existing);
+                return;
+            }
+
             BuildGrid();
         }
 
         /// <summary>
-        /// FieldConstants 값을 바꾼 뒤 씬에 이미 저장된(예전 값으로 만들어진) 슬롯을 지우고
-        /// 새 값으로 다시 만든다. 에디터 툴에서 FixBattleLayout 실행 전에 반드시 호출할 것 —
-        /// 안 그러면 레이아웃 계산은 최신 상수를 쓰는데 실제 슬롯은 옛날 위치에 남아 어긋난다.
+        /// 지금 씬에 있는 슬롯(손으로 옮긴 것 포함)을 전부 지우고 FieldConstants 기준값으로
+        /// 초기 배치를 새로 굽는다 — "손대기 전 기본 배치로 되돌리고 싶을 때"만 쓴다.
+        /// Inspector에서 GridManager 컴포넌트 우클릭 → 이 메뉴로 실행할 수 있다.
         /// </summary>
+        [ContextMenu("Rebuild Grid From FieldConstants (기존 배치 초기화)")]
         public void RebuildGrid()
         {
             ClearExistingSlots();
@@ -78,6 +108,7 @@ namespace WitchHour.Field
             for (int shelf = 0; shelf < shelfY.Length; shelf++)
             {
                 float[] columnXs = CenteredOffsets(FieldConstants.SlotColumnsPerShelfSide, FieldConstants.SlotColumnSpacing);
+                float shelfOffsetX = FieldConstants.ShelfColumnOffsetX[shelf];
 
                 foreach (GridSide side in new[] { GridSide.Left, GridSide.Right })
                 {
@@ -85,7 +116,7 @@ namespace WitchHour.Field
 
                     for (int col = 0; col < columnXs.Length; col++)
                     {
-                        var slot = CreateSlot(index, side, col, new Vector2(columnXs[col], y), slotSize, slotSize);
+                        var slot = CreateSlot(index, side, col, new Vector2(columnXs[col] + shelfOffsetX, y), slotSize, slotSize);
                         _slots.Add(slot);
                         index++;
                     }
@@ -164,7 +195,7 @@ namespace WitchHour.Field
 
             var slot = go.GetComponent<GridSlot>();
             if (slot == null) slot = go.AddComponent<GridSlot>();
-            slot.Init(index, side, row, fieldPosition);
+            slot.Init(index, side, row);
             return slot;
         }
 

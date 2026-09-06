@@ -28,6 +28,12 @@ namespace WitchHour.Merge
 
             foreach (var unit in GuardianUnit.ActiveUnits)
             {
+                // 배틀씬을 나갔다 다시 들어오는 경우(그만하기/결과창→로비→재출전) ActiveUnits는
+                // static이라 씬을 넘어 살아남는데, 이전 씬의 GuardianUnit들은 유니티가 씬 언로드로
+                // 자동으로 Destroy시켜버린다 — GuardianUnit.OnDestroy에서 스스로 지우게 해뒀지만,
+                // 혹시나 타이밍이 어긋나 죽은 참조가 아직 남아있는 경우를 대비한 방어선.
+                if (unit == null) continue;
+
                 var key = (unit.Data, unit.StarLevel);
                 if (!groups.TryGetValue(key, out var list))
                     groups[key] = list = new List<GuardianUnit>();
