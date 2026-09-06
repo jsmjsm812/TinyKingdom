@@ -164,8 +164,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1839087837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839087839}
+  - component: {fileID: 1839087838}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1839087838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839087837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b380e625aee15c4eb681f00f89e74d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WitchHour.Core.AudioManager
+  menuBgm: {fileID: 0}
+  battleBgm: {fileID: 0}
+  sfxButtonClick: {fileID: 8300000, guid: 00b18e15346f38a4e8535ac98e4ac9ee, type: 3}
+  sfxPurchase: {fileID: 8300000, guid: 5ab8fc664ca4d604f820e255005a664a, type: 3}
+  sfxReroll: {fileID: 8300000, guid: 2ebf2421dddc15a45b7fc6ae8197b1c0, type: 3}
+  sfxAttack: {fileID: 8300000, guid: d9419ba0bfac1e84a95418ac5851caf6, type: 3}
+  sfxHit: {fileID: 8300000, guid: 87e2452fe2c754248926c9a9ab93a467, type: 3}
+  sfxInvaderDeath: {fileID: 8300000, guid: d1698dd553af8ef4d887bc83b9687173, type: 3}
+  sfxInvaderSpawn: {fileID: 8300000, guid: c134bf6bd85561b4b938c913b97b57c9, type: 3}
+  sfxMerge: {fileID: 8300000, guid: ea985b41a11f1a540b2eb4fd290c9de0, type: 3}
+  sfxWaveStart: {fileID: 0}
+  sfxVictory: {fileID: 8300000, guid: e379dd960a523ac43aaca493dbe3cfcc, type: 3}
+  sfxDefeat: {fileID: 8300000, guid: f9f2bf42bceeae34eb4b4dfeb3b732ef, type: 3}
+  sfxCountdownTick: {fileID: 0}
+--- !u!4 &1839087839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839087837}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1837021670}
+  - {fileID: 1839087839}
