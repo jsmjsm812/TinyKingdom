@@ -16,7 +16,7 @@ namespace WitchHour.EditorTools
     /// </summary>
     public static class GameFontApplier
     {
-        [MenuItem("WitchHour/Apply Game Font To All Scenes And Prefabs")]
+        [MenuItem("TinyKingdom/Apply Game Font To All Scenes And Prefabs")]
         public static void ApplyEverywhere()
         {
             Font font = GameFonts.Main;

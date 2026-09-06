@@ -25,7 +25,7 @@ namespace WitchHour.EditorTools
         private const string KitDir = "Assets/Pixel_HUD_UI_FreeKit/Sprites/UI Elements";
         private const string BattlePath = "Assets/06_Scenes/Battle.unity";
 
-        [MenuItem("WitchHour/Apply Pixel HUD Kit Skin")]
+        [MenuItem("TinyKingdom/Apply Pixel HUD Kit Skin")]
         public static void ApplySkin()
         {
             // 배경류는 9-slice 테두리를 지정해서 임포트, 필류는 그냥 단일 스프라이트로 임포트.

@@ -15,7 +15,7 @@ namespace WitchHour.EditorTools
     {
         private static AddRequest _request;
 
-        [MenuItem("WitchHour/Install Device Simulator Package")]
+        [MenuItem("TinyKingdom/Install Device Simulator Package")]
         public static void Install()
         {
             _request = Client.Add("com.unity.device-simulator");

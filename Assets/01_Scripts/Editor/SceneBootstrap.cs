@@ -31,7 +31,7 @@ namespace WitchHour.EditorTools
         /// "Build Battle Scene"은 씬 구조 재편(RestructureScenes) 이후로 SampleScene.unity 경로가
         /// 더 이상 존재하지 않아 지금은 못 쓰므로, 체력바 같은 프리팹 전용 패치는 이걸로 따로 뺐다.
         /// </summary>
-        [MenuItem("WitchHour/Patch Invader Prefab (HP Bar)")]
+        [MenuItem("TinyKingdom/Patch Invader Prefab (HP Bar)")]
         public static void PatchInvaderPrefab()
         {
             BuildInvaderPrefab();
@@ -39,7 +39,7 @@ namespace WitchHour.EditorTools
             Debug.Log("[SceneBootstrap] InvaderUnit 프리팹 갱신 완료 — 체력바가 없었다면 추가됨.");
         }
 
-        [MenuItem("WitchHour/Build Battle Scene (Week 1)")]
+        [MenuItem("TinyKingdom/Build Battle Scene (Week 1)")]
         public static void BuildBattleScene()
         {
             var scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
@@ -61,7 +61,7 @@ namespace WitchHour.EditorTools
         /// 이미 열려 있는 에디터 세션에서 메뉴로 실행해야 한다 — 배치모드는 씬을 새로
         /// 만들 때 안전한 "저장할까요?" 대화상자를 띄울 수 없어서 이 작업엔 부적합하다.
         /// </summary>
-        [MenuItem("WitchHour/Restructure Into Boot-Title-Home-Battle Scenes")]
+        [MenuItem("TinyKingdom/Restructure Into Boot-Title-Home-Battle Scenes")]
         public static void RestructureScenes()
         {
             const string oldPath = "Assets/06_Scenes/SampleScene.unity";
@@ -99,7 +99,7 @@ namespace WitchHour.EditorTools
         /// Battle 씬은 GridManager/BattleManager가 이미 배선돼 있어서 통째로 재생성할 수 없다.
         /// EventSystem의 입력 모듈만 새 Input System용으로 교체하고, 카메라가 없으면 하나 추가한다.
         /// </summary>
-        [MenuItem("WitchHour/Fix Battle Scene Input Module")]
+        [MenuItem("TinyKingdom/Fix Battle Scene Input Module")]
         public static void FixBattleSceneInputModule()
         {
             const string path = "Assets/06_Scenes/Battle.unity";
@@ -221,7 +221,7 @@ namespace WitchHour.EditorTools
 
             CreateLabel(canvasRoot, "LogoText", "작은 왕국", 70, font, new Vector2(0, 700), new Vector2(800, 150));
 
-            // 구역 선택 카드(3개)는 별도의 "WitchHour/Build Zone Select (Home Scene)" 메뉴가 채운다 —
+            // 구역 선택 카드(3개)는 별도의 "TinyKingdom/Build Zone Select (Home Scene)" 메뉴가 채운다 —
             // 여기서는 HomeController만 붙여두고, 그 메뉴가 언제든 다시 실행해도 안전하게 idempotent함.
             new GameObject("HomeController", typeof(HomeController));
 
@@ -234,7 +234,7 @@ namespace WitchHour.EditorTools
         /// 진입해서 2·3구역은 아무리 클리어해도 실제로 들어가볼 방법이 없었다 — 그 구멍을 메운다.
         /// 몇 번을 다시 실행해도 안전하게 이전 카드들을 지우고 새로 만든다.
         /// </summary>
-        [MenuItem("WitchHour/Build Zone Select (Home Scene)")]
+        [MenuItem("TinyKingdom/Build Zone Select (Home Scene)")]
         public static void BuildZoneSelect()
         {
             const string homePath = "Assets/06_Scenes/Home.unity";
@@ -319,7 +319,7 @@ namespace WitchHour.EditorTools
         /// 상점 UI 때처럼 이미 있으면(SettingsPanel 존재) 레이아웃은 다시 안 건드리고 넘어간다 —
         /// 유저가 씬에서 위치를 옮겨놨을 수 있어서.
         /// </summary>
-        [MenuItem("WitchHour/Build Settings Panel (Home Scene)")]
+        [MenuItem("TinyKingdom/Build Settings Panel (Home Scene)")]
         public static void BuildSettingsPanel()
         {
             const string homePath = "Assets/06_Scenes/Home.unity";
@@ -488,7 +488,7 @@ namespace WitchHour.EditorTools
         /// 먼저 실행해서 레지스트리에 수호자가 들어있어야 카드가 만들어진다.
         /// 설정 패널과 같은 이유로 이미 있으면(GuardianCodexPanel 존재) 다시 안 짓는다.
         /// </summary>
-        [MenuItem("WitchHour/Build Guardian Codex (Home Scene)")]
+        [MenuItem("TinyKingdom/Build Guardian Codex (Home Scene)")]
         public static void BuildGuardianCodex()
         {
             const string homePath = "Assets/06_Scenes/Home.unity";
@@ -513,7 +513,7 @@ namespace WitchHour.EditorTools
             if (registry == null)
             {
                 Debug.LogError("[SceneBootstrap] GuardianRegistry를 못 찾았습니다 — " +
-                                "WitchHour > Build Guardian Registry (Save System)을 먼저 실행하세요.");
+                                "TinyKingdom > Build Guardian Registry (Save System)을 먼저 실행하세요.");
                 return;
             }
 
@@ -642,10 +642,10 @@ namespace WitchHour.EditorTools
         /// GameViewSizes는 UnityEditor 내부(internal) 클래스라 리플렉션으로 접근한다 —
         /// 순수 에디터 미리보기 편의 설정이라 실패해도 게임 자체(CanvasScaler)에는 영향 없음.
         /// </summary>
-        [MenuItem("WitchHour/Set Mobile Game View (1080x1920)")]
+        [MenuItem("TinyKingdom/Set Mobile Game View (1080x1920)")]
         public static void SetMobileGameView()
         {
-            const string sizeName = "WitchHour Portrait (1080x1920)";
+            const string sizeName = "TinyKingdom Portrait (1080x1920)";
             try
             {
                 Assembly editorAssembly = typeof(Editor).Assembly;
@@ -777,7 +777,7 @@ namespace WitchHour.EditorTools
         {
             float barY = FieldConstants.InvaderSize / 2f + 12f;
 
-            // Pixel_HUD_UI_FreeKit의 UI_Progress_Style2 프레임을 쓰면(WitchHour > Apply Pixel HUD
+            // Pixel_HUD_UI_FreeKit의 UI_Progress_Style2 프레임을 쓰면(TinyKingdom > Apply Pixel HUD
             // Kit Skin) 원본 비율(104x39)이 예전 64x10짜리 얇은 바에는 안 맞아서(9-slice 테두리가
             // 세로 공간보다 커짐) 세로를 좀 더 키웠다.
             var bgGO = new GameObject("HpBarBg", typeof(RectTransform), typeof(Image));

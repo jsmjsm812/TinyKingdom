@@ -23,7 +23,7 @@ namespace WitchHour.EditorTools
         private const string GuardianPrefabDir = "Assets/05_Prefabs/CharacterPreviews/Guardians";
         private const string InvaderPrefabDir = "Assets/05_Prefabs/CharacterPreviews/Invaders";
 
-        [MenuItem("WitchHour/Build Character Lineup (Debug Preview)")]
+        [MenuItem("TinyKingdom/Build Character Lineup (Debug Preview)")]
         public static void BuildLineup()
         {
             var scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);

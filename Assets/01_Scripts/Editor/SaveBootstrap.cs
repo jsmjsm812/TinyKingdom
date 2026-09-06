@@ -16,7 +16,7 @@ namespace WitchHour.EditorTools
         private const string ResourcesDir = "Assets/02_Data/Resources";
         private const string RegistryPath = ResourcesDir + "/GuardianRegistry.asset";
 
-        [MenuItem("WitchHour/Build Guardian Registry (Save System)")]
+        [MenuItem("TinyKingdom/Build Guardian Registry (Save System)")]
         public static void BuildGuardianRegistry()
         {
             if (!AssetDatabase.IsValidFolder(ResourcesDir))

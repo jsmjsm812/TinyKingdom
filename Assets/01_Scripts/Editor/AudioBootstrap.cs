@@ -15,8 +15,11 @@ namespace WitchHour.EditorTools
     {
         private const string BootScenePath = "Assets/06_Scenes/Boot.unity";
         private const string SfxDir = "Assets/Brackeys/2D Mega Pack/Sounds";
+        private const string BgmDir = "Assets/OldCartoonMusicFree";
+        private const string EightBitDir = "Assets/8-bit SFX & UI Sounds";
+        private const string ShootingDir = "Assets/ShootingSound";
 
-        [MenuItem("WitchHour/Setup Audio Manager (Boot Scene)")]
+        [MenuItem("TinyKingdom/Setup Audio Manager (Boot Scene)")]
         public static void SetupAudioManager()
         {
             var scene = EditorSceneManager.OpenScene(BootScenePath, OpenSceneMode.Single);
@@ -28,32 +31,50 @@ namespace WitchHour.EditorTools
                 go.AddComponent<AudioManager>();
 
             var so = new SerializedObject(go.GetComponent<AudioManager>());
+
+            // BGM은 일단 뺀다("브금 없애고" 요청) — menuBgm/battleBgm을 비워두면
+            // AudioManager.PlayBgm(null)이 그냥 무음 처리한다(죽지 않음).
+            ClearClip(so, "menuBgm");
+            ClearClip(so, "battleBgm");
+
+            // 기존 Brackeys SFX 그대로 유지.
             SetClip(so, "sfxButtonClick", "ButtonPress.wav");
             SetClip(so, "sfxPurchase", "Bonus.wav");
             SetClip(so, "sfxReroll", "Whoosh.wav");
-            SetClip(so, "sfxAttack", "Shot.wav");
             SetClip(so, "sfxHit", "Hit.wav");
             SetClip(so, "sfxInvaderDeath", "Explosion.wav");
             SetClip(so, "sfxInvaderSpawn", "Spawn.wav");
-            SetClip(so, "sfxMerge", "Bonus.wav");
-            SetClip(so, "sfxWaveStart", "Whoosh.wav");
-            SetClip(so, "sfxVictory", "Bonus.wav");
-            SetClip(so, "sfxDefeat", "GameOver.wav");
             SetClip(so, "sfxCountdownTick", "RespawnCountdown.wav");
+            // 웨이브 시작 전 효과음도 뺀다("웨이브 시작전 효과음 없애" 요청).
+            ClearClip(so, "sfxWaveStart");
+
+            // 새로 임포트된 팩 중 이 판타지 타워디펜스 톤에 더 잘 맞는 것만 골라 업그레이드.
+            // (GameAppSFXPack002FuturisticUSERwet은 "미래적" 톤이라 이 중세 판타지 게임과 안 어울려서 일단 안 씀)
+            SetClipAt(so, "sfxAttack", $"{ShootingDir}/crossbow.wav"); // 근거리 무기(석궁) 톤 — 마법 계열(magic_01)에서 교체
+            SetClipAt(so, "sfxMerge", $"{EightBitDir}/Level_Up/5_LevelUp.wav"); // 합성 성급 상승과 의미가 정확히 맞음
+            SetClipAt(so, "sfxVictory", $"{EightBitDir}/Victory/9_Victory.wav"); // 예전엔 구매(Bonus.wav)와 소리가 겹쳤음
+            SetClipAt(so, "sfxDefeat", $"{EightBitDir}/Death_Screen/3_DeathScreen.wav");
+
             so.ApplyModifiedPropertiesWithoutUndo();
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
 
-            Debug.Log("[AudioBootstrap] AudioManager를 Boot 씬에 배치하고 Brackeys 2D Mega Pack SFX 11개를 연결했습니다. " +
-                       "BGM(menuBgm/battleBgm)은 아직 트랙이 없어서 비워뒀습니다 — 트랙을 구해서 " +
-                       "Assets/04_Audio/BGM에 넣고 인스펙터에서 직접 연결해주세요.");
+            Debug.Log("[AudioBootstrap] AudioManager에 BGM(OldCartoonMusicFree) 2트랙 + 효과음 일부(8-bit SFX, ShootingSound) 업그레이드 연결 완료.");
         }
 
         private static void SetClip(SerializedObject so, string fieldName, string fileName)
+            => SetClipAt(so, fieldName, $"{SfxDir}/{fileName}");
+
+        private static void ClearClip(SerializedObject so, string fieldName)
         {
-            string path = $"{SfxDir}/{fileName}";
+            var prop = so.FindProperty(fieldName);
+            if (prop != null) prop.objectReferenceValue = null;
+        }
+
+        private static void SetClipAt(SerializedObject so, string fieldName, string path)
+        {
             var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
             if (clip == null)
             {

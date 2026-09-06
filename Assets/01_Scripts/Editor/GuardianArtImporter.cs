@@ -19,7 +19,7 @@ namespace WitchHour.EditorTools
         private const string SpriteDir = "Assets/03_Art/Sprites/Guardians";
         private const string DataDir = "Assets/02_Data/Guardians";
 
-        [MenuItem("WitchHour/Import Guardian Portraits")]
+        [MenuItem("TinyKingdom/Import Guardian Portraits")]
         public static void ImportGuardianPortraits()
         {
             int wired = 0;

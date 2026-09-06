@@ -27,13 +27,14 @@ namespace WitchHour.EditorTools
 
         // 왼쪽에 상점/아이템 세로 탭을 붙이는 만큼 폭을 예약해둔다. 아이템 탭은 지금은 자리만
         // 있고("준비 중" 플레이스홀더) 실제 아이템 시스템은 나중에 별도로 설계해서 채운다.
-        private const float PanelWidth = 1080f;
-        // 카드가 180→195로 커졌을 때 패널 높이(220)를 안 늘려서, 카드 아래 여백이 20px에서
-        // 5px로 확 줄어 이름 텍스트가 패널/화면 가장자리에 거의 닿아 "잘린 것처럼" 보였다.
-        // 카드(195) + 위 여백(20) + 아래 여백(20) = 235 이상 필요해서 240으로 키움.
-        private const float PanelHeight = 240f;
-        private const float TabStripWidth = 140f;
-        private const float PanelContentCenterX = (-PanelWidth / 2f + TabStripWidth + PanelWidth / 2f) / 2f;
+        internal const float PanelWidth = 1080f;
+        // 2x2 격자를 시도했다가 성벽 HP 바 등 다른 UI와 겹치는 부작용이 커서(패널이 세로로
+        // 커지는 만큼 위쪽 UI 자리를 침범함) 되돌렸다 — 대신 카드 개수를 4→3으로 줄여서
+        // (ShopManager.SlotCount) 한 줄에 더 넓은 카드를 놓는 쪽으로 문제를 풀었다. 한 줄이라
+        // 세로 높이는 예전(카드 195 기준)과 동일.
+        internal const float PanelHeight = 240f;
+        internal const float TabStripWidth = 140f;
+        internal const float PanelContentCenterX = (-PanelWidth / 2f + TabStripWidth + PanelWidth / 2f) / 2f;
 
         // 화면 위쪽 HUD(성벽 HP 바/금화/웨이브)가 차지하는 높이 — FixBattleLayout이 필드를
         // 위로 붙일 때 이 만큼은 항상 비워둬야 겹치지 않는다.
@@ -45,7 +46,7 @@ namespace WitchHour.EditorTools
         /// 시각적으로만 축소·상단 정렬해서 화면 하단에 UI 전용 공간을 비워준다.
         /// (사거리/이동속도 등은 로컬 좌표 기준이라 시각적 스케일과 무관하게 그대로 동작함)
         /// </summary>
-        [MenuItem("WitchHour/Fix Battle Layout (Field vs UI Overlap)")]
+        [MenuItem("TinyKingdom/Fix Battle Layout (Field vs UI Overlap)")]
         public static void FixBattleLayout()
         {
             var scene = EditorSceneManager.OpenScene(BattlePath, OpenSceneMode.Single);
@@ -66,9 +67,12 @@ namespace WitchHour.EditorTools
             gridManagerSO.FindProperty("slotSprite").objectReferenceValue = LoadPixelKitSprite("UI_Slot_Selected.png");
             gridManagerSO.ApplyModifiedPropertiesWithoutUndo();
 
-            // 씬에 저장된 슬롯은 예전 FieldConstants 값으로 만들어진 것일 수 있으니, 레이아웃을
-            // 계산하기 전에 항상 최신 상수로 슬롯을 다시 생성한다(안 그러면 계산과 실제가 어긋남).
-            gridManager.RebuildGrid();
+            // 주의: 여기서 RebuildGrid()를 부르면 안 된다 — 그건 씬에 이미 있는 슬롯(손으로
+            // 옮긴 것 포함)을 전부 지우고 FieldConstants의 "대칭" 기본 공식으로 다시 굽는
+            // 함수라서, 이 메뉴를 실행할 때마다 사용자가 직접 배치한(선반마다 좌우로 어긋난)
+            // 슬롯 배치가 매번 사라지는 버그가 있었다. GridManager는 [ExecuteAlways]라 씬을
+            // 여는 시점에 이미 Awake()가 실행되어 기존 슬롯을 그대로 보존(없을 때만 새로 생성)
+            // 하므로, 아래 스케일/위치 계산만 하면 충분하다.
 
             const float trueCanvasHalfHeight = 960f; // CanvasScaler 기준해상도 1920의 절반
             const float topPadding = 10f;
@@ -116,6 +120,169 @@ namespace WitchHour.EditorTools
             EditorSceneManager.SaveScene(scene);
             Debug.Log($"[ShopRosterUIBootstrap] 필드를 {scale:P0} 크기로 축소하고 위로 {shiftUp}px 올려서 하단 UI와 안 겹치게 했습니다. " +
                       $"패널 {panelsResized}개 높이를 {PanelHeight}로 맞췄습니다.");
+        }
+
+        // 2x2 격자 → 3칸 확대까지 여러 버전을 시도해봤지만("상점 UI 실험" 대화 참고) 전부
+        // 다른 UI와 겹치거나 화면 가장자리에 닿는 부작용이 있어서, 사용자가 2x2를 요청하기
+        // 이전 원래 상태(카드 4장, 147x195, 원래 내부 레이아웃)로 완전히 되돌린다. 실험 도중
+        // 4번째 카드 인스턴스가 실제로 삭제됐을 수 있어서, 없으면 프리팹에서 다시 복제해 채운다.
+        private const float OriginalCardWidth = 147f;
+        private const float OriginalCardHeight = 195f;
+        private const float OriginalCardGap = 6f;
+        private const float OriginalRerollWidth = 145f;
+        private const float OriginalRerollGap = 16f;
+
+        [MenuItem("TinyKingdom/Revert Shop Slots To Original (4 Cards)")]
+        public static void RevertShopSlotsToOriginal()
+        {
+            RevertShopSlotPrefabLayout();
+
+            var scene = EditorSceneManager.OpenScene(BattlePath, OpenSceneMode.Single);
+
+            var shopUIGO = FindInScene(scene, "ShopUI");
+            if (shopUIGO == null)
+            {
+                Debug.LogError("[ShopRosterUIBootstrap] ShopUI를 못 찾았습니다.");
+                return;
+            }
+            var shopUI = shopUIGO.GetComponent<ShopUI>();
+            var so = new SerializedObject(shopUI);
+            var slotsProp = so.FindProperty("slotViews");
+            var rerollProp = so.FindProperty("rerollButton");
+
+            // 실험 도중 지워졌을 수 있는 4번째 슬롯을 프리팹에서 다시 복제해 채운다.
+            // 주의: SerializedProperty 배열을 늘리면 유니티가 새로 생긴 칸에 "마지막 기존 값을
+            // 복사"해 넣는다(빈 값이 아님!) — 그래서 3칸→4칸으로 늘리면 4번째 칸이 null이 아니라
+            // 3번째 칸과 "같은 오브젝트"를 가리키게 된다. 이걸 그냥 null 체크만으로 걸러내면
+            // 중복 참조를 놓쳐서 카드 2장이 같은 오브젝트를 공유(한쪽 자리만 실제로 보임)하는
+            // 버그가 났었다 — 늘어난 구간(원래 크기 이후)은 무조건 먼저 null로 지우고 시작한다.
+            const string shopSlotPrefabPath = PrefabDir + "/UI/ShopSlot.prefab";
+            var shopSlotAsset = AssetDatabase.LoadAssetAtPath<GameObject>(shopSlotPrefabPath);
+            var panelT = shopUIGO.transform.parent; // ShopUI는 ShopPanel 바로 아래에 있음
+
+            int originalSize = slotsProp.arraySize;
+            slotsProp.arraySize = 4;
+            for (int i = originalSize; i < 4; i++)
+                slotsProp.GetArrayElementAtIndex(i).objectReferenceValue = null;
+
+            // 혹시 이미 저장된 4칸 중에 같은 오브젝트를 두 번 이상 가리키는 중복이 있으면
+            // (예전에 이 버그로 한 번 잘못 저장된 경우) 뒤에 나온 쪽을 비워서 다시 채우게 한다.
+            var seen = new System.Collections.Generic.HashSet<Object>();
+            for (int i = 0; i < 4; i++)
+            {
+                var element = slotsProp.GetArrayElementAtIndex(i);
+                var obj = element.objectReferenceValue;
+                if (obj == null) continue;
+                if (!seen.Add(obj)) element.objectReferenceValue = null;
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                var element = slotsProp.GetArrayElementAtIndex(i);
+                if (element.objectReferenceValue == null)
+                {
+                    var copy = (GameObject)PrefabUtility.InstantiatePrefab(shopSlotAsset, panelT);
+                    copy.name = "ShopSlot";
+                    element.objectReferenceValue = copy.GetComponent<ShopSlotView>();
+                }
+            }
+
+            float groupWidth = 4 * OriginalCardWidth + 3 * OriginalCardGap + OriginalRerollGap + OriginalRerollWidth;
+            float leftEdge = PanelContentCenterX - groupWidth / 2f;
+
+            for (int i = 0; i < 4; i++)
+            {
+                var slotView = slotsProp.GetArrayElementAtIndex(i).objectReferenceValue as ShopSlotView;
+                if (slotView == null) continue;
+
+                float x = leftEdge + OriginalCardWidth / 2f + i * (OriginalCardWidth + OriginalCardGap);
+                var rect = slotView.GetComponent<RectTransform>();
+                rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 1f);
+                rect.pivot = new Vector2(0.5f, 1f);
+                rect.anchoredPosition = new Vector2(x, -20f);
+                rect.sizeDelta = new Vector2(OriginalCardWidth, OriginalCardHeight);
+            }
+
+            var rerollButton = rerollProp.objectReferenceValue as Button;
+            if (rerollButton != null)
+            {
+                float rerollX = leftEdge + 4 * (OriginalCardWidth + OriginalCardGap) - OriginalCardGap
+                                + OriginalRerollGap + OriginalRerollWidth / 2f;
+                var rerollRect = rerollButton.GetComponent<RectTransform>();
+                rerollRect.anchorMin = rerollRect.anchorMax = new Vector2(0.5f, 1f);
+                rerollRect.pivot = new Vector2(0.5f, 1f);
+                rerollRect.anchoredPosition = new Vector2(rerollX, -20f);
+                rerollRect.sizeDelta = new Vector2(OriginalRerollWidth, OriginalCardHeight);
+            }
+
+            so.ApplyModifiedPropertiesWithoutUndo();
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            Debug.Log("[ShopRosterUIBootstrap] 상점 슬롯을 2x2 이전 원래 상태(카드 4장, 147x195)로 되돌렸습니다. " +
+                      "ShopManager.SlotCount와 GDD.md도 4로 되돌려뒀습니다.");
+        }
+
+        private static void RevertShopSlotPrefabLayout()
+        {
+            const string shopSlotPrefabPath = PrefabDir + "/UI/ShopSlot.prefab";
+            var prefabAsset = AssetDatabase.LoadAssetAtPath<GameObject>(shopSlotPrefabPath);
+            if (prefabAsset == null)
+            {
+                Debug.LogWarning($"[ShopRosterUIBootstrap] {shopSlotPrefabPath}를 못 찾아 카드 내부 레이아웃 원복을 건너뜁니다.");
+                return;
+            }
+
+            var contents = PrefabUtility.LoadPrefabContents(shopSlotPrefabPath);
+            try
+            {
+                var cardImage = contents.GetComponent<Image>();
+                if (cardImage != null)
+                    contents.GetComponent<RectTransform>().sizeDelta = new Vector2(OriginalCardWidth, OriginalCardHeight);
+
+                var portraitT = contents.transform.Find("Portrait");
+                if (portraitT != null)
+                {
+                    var portraitRect = (RectTransform)portraitT;
+                    portraitRect.anchorMin = portraitRect.anchorMax = new Vector2(0f, 1f);
+                    portraitRect.pivot = new Vector2(0f, 1f);
+                    portraitRect.anchoredPosition = new Vector2(0, -40);
+                    portraitRect.sizeDelta = new Vector2(88, 110);
+                }
+
+                var statsT = contents.transform.Find("Label");
+                if (statsT != null)
+                {
+                    var statsText = statsT.GetComponent<Text>();
+                    if (statsText != null)
+                    {
+                        var statsRect = statsText.rectTransform;
+                        statsRect.anchorMin = statsRect.anchorMax = new Vector2(1f, 1f);
+                        statsRect.pivot = new Vector2(1f, 0.5f);
+                        statsRect.anchoredPosition = new Vector2(-3, -95);
+                        statsRect.sizeDelta = new Vector2(55, 90);
+                        statsText.fontSize = 15;
+                        statsText.alignment = TextAnchor.MiddleRight;
+                    }
+                }
+
+                var slotView = contents.GetComponent<ShopSlotView>();
+                var so = new SerializedObject(slotView);
+                var nameProp = so.FindProperty("nameText");
+                if (nameProp.objectReferenceValue is Text nameText)
+                {
+                    var nameRect = nameText.rectTransform;
+                    nameRect.anchoredPosition = new Vector2(0, -172);
+                    nameRect.sizeDelta = new Vector2(140, 24);
+                    nameText.fontSize = 20;
+                }
+
+                PrefabUtility.SaveAsPrefabAsset(contents, shopSlotPrefabPath);
+                Debug.Log("[ShopRosterUIBootstrap] ShopSlot.prefab 내부 레이아웃을 원래 크기(147폭)로 되돌렸습니다.");
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(contents);
+            }
         }
 
         // 유저가 직접 그려준 필드 배경 일러스트(초원+숲 테두리+풍차+깃발). 반복 타일이 아니라
@@ -246,8 +413,14 @@ namespace WitchHour.EditorTools
                     ? new Vector2(length + overlap, PathWidth)
                     : new Vector2(PathWidth, length + overlap);
 
+                // 예전엔 다른 UI 패널들처럼 ApplyRounded(둥근 모서리 9-slice)를 썼는데, 인접/겹치는
+                // 구간끼리 각자 자기 모서리만 둥글게 깎다 보니 겹치는 자리에서 한쪽의 둥근 모서리가
+                // 다른 쪽 사각형 채우기 위로 살짝 파고들어 "잘린 선"처럼 보이는 이음새가 생겼다
+                // (기존에는 풀 테두리 장식이 그 이음새를 가려줘서 안 보였는데, 장식을 지우니 드러남).
+                // 채우기는 그냥 순수 사각형(모서리 없음)으로 두면 겹치는 부분끼리 완전히 같은
+                // 단색이라 이음새 자체가 생길 수가 없다 — 코너는 어차피 overlap으로 넉넉히
+                // 덮어써서 각짐 자체는 안 보임(슬롯 박스에 가려짐).
                 var segImage = segGO.GetComponent<Image>();
-                ApplyRounded(segImage);
                 segImage.color = PathColor;
                 segImage.raycastTarget = false;
             }
@@ -342,7 +515,7 @@ namespace WitchHour.EditorTools
         /// 정확히 화면 전체(1080x1920)를 덮는 크기로 역산한다 — 반드시 Fix Battle Layout을
         /// 먼저 실행한 뒤 써야 함.
         /// </summary>
-        [MenuItem("WitchHour/Add Field Background (TinyKingdom)")]
+        [MenuItem("TinyKingdom/Add Field Background (TinyKingdom)")]
         public static void AddFieldBackground()
         {
             var scene = EditorSceneManager.OpenScene(BattlePath, OpenSceneMode.Single);
@@ -400,10 +573,67 @@ namespace WitchHour.EditorTools
             Debug.Log("[ShopRosterUIBootstrap] 필드 배경(직접 그린 초원 일러스트) + 통로(모래색) 적용 완료.");
         }
 
+        // 존1(FieldBackground.png)과 같은 방식으로 존2·존3용 배경 일러스트를 각 ZoneData에
+        // 연결한다. AddFieldBackground()는 씬의 FieldBackground Image에 항상 존1 그림 하나만
+        // 박아 넣는 것과 별개로, 이건 "구역별로 다른 배경"이 실제로 전환되게 하는 데이터 쪽
+        // 준비 — 런타임 적용은 WaveSpawner.ApplyZoneVisuals()가 담당한다.
+        private const string Zone2BackgroundPath = "Assets/03_Art/Sprites/Zone2Background.png";
+        private const string Zone3BackgroundPath = "Assets/03_Art/Sprites/Zone3Background.png";
+        private const string Zone1DataPath = "Assets/02_Data/Zones/Zone1_FrontGate.asset";
+        private const string Zone2DataPath = "Assets/02_Data/Zones/Zone2_Library.asset";
+        private const string Zone3DataPath = "Assets/02_Data/Zones/Zone3_Greenhouse.asset";
+
+        // 통로 색 — 존1은 기존 실측값(ZoneData 기본값과 동일) 그대로. 존2·존3은 감으로 고른 값이
+        // 아니라 실제 배경 PNG 중앙(슬롯/길이 놓일 자리) 픽셀을 파이썬으로 평균 낸 값 기준으로
+        // 잡았다(정확한 수치는 대화 기록 참고) — 그 값보다 살짝 밝게(worn path 느낌으로 대비를
+        // 줌) 조정한 게 PathColor. PathTrim은 원본이 초록 풀 텍스처라 곱연산 틴트로만 색을
+        // 눌러주는 거라(새 텍스처를 그린 게 아님) 정확한 과학은 아니고 근사임 — 실제로 봤을 때
+        // 이상하면 Zone2_Library/Zone3_Greenhouse 에셋의 Inspector에서 이 두 필드를 직접
+        // 조정해도 됨(메뉴 재실행 없이 바로 반영, Play 중이면 구역 전환 버튼으로 바로 확인 가능).
+        private static readonly Color Zone1PathColor = new Color(0.851f, 0.725f, 0.4f);
+        private static readonly Color Zone1PathTrimTint = Color.white;
+        private static readonly Color Zone2PathColor = new Color(0.72f, 0.71f, 0.74f); // 실측 회청색 돌바닥보다 살짝 밝은 마모된 길
+        private static readonly Color Zone2PathTrimTint = new Color(0.95f, 1.05f, 1.6f); // 풀을 이끼 낀 회녹색으로 눌러줌
+        private static readonly Color Zone3PathColor = new Color(0.4f, 0.22f, 0.38f); // 실측 어두운 자주색 바닥보다 살짝 밝은 길
+        private static readonly Color Zone3PathTrimTint = new Color(0.85f, 0.24f, 1.8f); // 풀을 보라색 잠식 덩굴로
+
+        [MenuItem("TinyKingdom/Assign Zone Backgrounds")]
+        public static void AssignZoneBackgrounds()
+        {
+            AssignOneZoneBackground(Zone1DataPath, FieldBackgroundIllustrationPath, Zone1PathColor, Zone1PathTrimTint);
+            AssignOneZoneBackground(Zone2DataPath, Zone2BackgroundPath, Zone2PathColor, Zone2PathTrimTint);
+            AssignOneZoneBackground(Zone3DataPath, Zone3BackgroundPath, Zone3PathColor, Zone3PathTrimTint);
+
+            AssetDatabase.SaveAssets();
+            Debug.Log("[ShopRosterUIBootstrap] 존1/존2/존3 ZoneData에 배경 일러스트 + 통로 색 연결 완료.");
+        }
+
+        private static void AssignOneZoneBackground(string zoneDataPath, string spritePath, Color pathColor, Color pathTrimTint)
+        {
+            var zone = AssetDatabase.LoadAssetAtPath<ZoneData>(zoneDataPath);
+            if (zone == null)
+            {
+                Debug.LogError($"[ShopRosterUIBootstrap] ZoneData를 못 찾음: {zoneDataPath}");
+                return;
+            }
+            Sprite sprite = EnsureIllustrationSprite(spritePath);
+            if (sprite == null)
+            {
+                Debug.LogError($"[ShopRosterUIBootstrap] 배경 스프라이트 준비 실패: {spritePath}");
+                return;
+            }
+            var so = new SerializedObject(zone);
+            so.FindProperty("fieldBackground").objectReferenceValue = sprite;
+            so.FindProperty("pathColor").colorValue = pathColor;
+            so.FindProperty("pathTrimTint").colorValue = pathTrimTint;
+            so.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(zone);
+        }
+
         /// <summary>
         /// 웨이브 클리어/성벽 함락 시 구역 해금 + 결과창을 띄우도록 배선한다.
         /// </summary>
-        [MenuItem("WitchHour/Build Result Screen and Zone Unlock")]
+        [MenuItem("TinyKingdom/Build Result Screen and Zone Unlock")]
         public static void BuildResultScreenAndZoneUnlock()
         {
             var scene = EditorSceneManager.OpenScene(BattlePath, OpenSceneMode.Single);
@@ -502,7 +732,7 @@ namespace WitchHour.EditorTools
             return panel;
         }
 
-        [MenuItem("WitchHour/Build Shop and Roster UI (Week 2)")]
+        [MenuItem("TinyKingdom/Build Shop and Roster UI (Week 2)")]
         public static void BuildShopAndRosterUI()
         {
             var scene = EditorSceneManager.OpenScene(BattlePath, OpenSceneMode.Single);
@@ -618,14 +848,14 @@ namespace WitchHour.EditorTools
             return _roundedSprite;
         }
 
-        // Pixel_HUD_UI_FreeKit 스프라이트들 — WitchHour > Apply Pixel HUD Kit Skin이 최초 1회
+        // Pixel_HUD_UI_FreeKit 스프라이트들 — TinyKingdom > Apply Pixel HUD Kit Skin이 최초 1회
         // 9-slice 보더까지 설정해둠(배경류), 여기선 그냥 경로로 로드만 한다. internal이라
         // SceneBootstrap(같은 네임스페이스, 침입자 체력바 쪽)에서도 재사용한다.
         internal const string PixelKitDir = "Assets/Pixel_HUD_UI_FreeKit/Sprites/UI Elements";
         internal static Sprite LoadPixelKitSprite(string fileName) =>
             AssetDatabase.LoadAssetAtPath<Sprite>($"{PixelKitDir}/{fileName}");
 
-        private static void ApplyRounded(Image image)
+        internal static void ApplyRounded(Image image)
         {
             image.sprite = RoundedSprite();
             image.type = Image.Type.Sliced;
@@ -649,7 +879,7 @@ namespace WitchHour.EditorTools
 
         // 버튼 눌림/하이라이트 색을 명시적으로 지정 — 기본값 그대로 두면 눌러도 티가 잘 안 난다.
         // 알파는 그대로 두고 RGB만 스케일해야 반투명 색상의 투명도가 안 바뀐다.
-        private static void ApplyButtonColors(Button button, Color baseColor)
+        internal static void ApplyButtonColors(Button button, Color baseColor)
         {
             var colors = button.colors;
             colors.normalColor = baseColor;
@@ -804,8 +1034,6 @@ namespace WitchHour.EditorTools
             // 카드 4장과 같은 줄 맨 오른쪽에 5번째 칸처럼 나란히 놓아 UI를 꽉 채운다
             // (덕분에 패널 높이도 카드 세로 한 줄만큼만 있으면 됨 — PanelHeight를 더 줄일 수 있었음).
             const float cardWidth = 147f;
-            // 이름/가격 텍스트가 너무 작아 보인다는 피드백으로 폰트를 키우면서, 초상화(137) 밑에
-            // 텍스트 두 줄이 들어갈 여유 공간도 180→195로 같이 늘렸다(패널 아래 여백에서 15px만 뺌).
             const float cardHeight = 195f;
             const float rerollWidth = 145f; // 120→145: "버튼이 너무 작다" 피드백으로 키움(FixBattleLayout에도 같은 값 반영)
             const float cardGap = 6f;
@@ -985,7 +1213,7 @@ namespace WitchHour.EditorTools
         /// 덮어쓰므로(존재 여부로 건너뛰지 않음) 레이아웃을 또 바꾸면 이 메뉴만 다시 실행하면 됨.
         /// 프리팹 하나만 고치면 씬의 4장 인스턴스에 전부 반영된다.
         /// </summary>
-        [MenuItem("WitchHour/Fix Shop Slot Stats Layout")]
+        [MenuItem("TinyKingdom/Fix Shop Slot Stats Layout")]
         public static void FixShopSlotStatsLayout()
         {
             const string shopSlotPrefabPath = PrefabDir + "/UI/ShopSlot.prefab";
@@ -1062,7 +1290,7 @@ namespace WitchHour.EditorTools
         /// 프리팹의 인스턴스로 다시 만들어 같은 위치에 놓는다 — 이제부터 ShopSlot.prefab 하나만
         /// 고치면 4장 전부(그리고 앞으로 씬을 새로 지어도) 같이 바뀐다.
         /// </summary>
-        [MenuItem("WitchHour/Convert Shop Slot To Prefab")]
+        [MenuItem("TinyKingdom/Convert Shop Slot To Prefab")]
         public static void ConvertShopSlotToPrefab()
         {
             var scene = EditorSceneManager.OpenScene(BattlePath, OpenSceneMode.Single);
@@ -1237,7 +1465,7 @@ namespace WitchHour.EditorTools
         /// 맞춰놨을 수 있어서 RectTransform은 절대 안 건드리고 Image.color만 고친다
         /// (재실행해도 안전 — 항상 색만 다시 칠함).
         /// </summary>
-        [MenuItem("WitchHour/Colorize Side Tabs (Item vs Settings)")]
+        [MenuItem("TinyKingdom/Colorize Side Tabs (Item vs Settings)")]
         public static void ColorizeSideTabs()
         {
             var scene = EditorSceneManager.OpenScene(BattlePath, OpenSceneMode.Single);
@@ -1271,7 +1499,7 @@ namespace WitchHour.EditorTools
         /// 바꿔치기한다. BuildSideTabs는 ShopPanel이 이미 있으면 통째로 안 건드리게 가드가
         /// 걸려 있어서, 이미 상점 UI가 지어진 씬은 이 메뉴로 탭 부분만 따로 다시 지어야 한다.
         /// </summary>
-        [MenuItem("WitchHour/Rebuild Side Tabs (Toggle + Settings)")]
+        [MenuItem("TinyKingdom/Rebuild Side Tabs (Toggle + Settings)")]
         public static void RebuildSideTabs()
         {
             var scene = EditorSceneManager.OpenScene(BattlePath, OpenSceneMode.Single);
@@ -1307,7 +1535,27 @@ namespace WitchHour.EditorTools
         /// GameObject.Find는 비활성 오브젝트를 못 찾는다(ItemPanel/SettingsPanel처럼 평소엔
         /// SetActive(false)로 꺼둔 것들) — 씬 루트부터 자식까지 활성 여부 상관없이 이름으로 찾는다.
         /// </summary>
-        private static GameObject FindInScene(Scene scene, string name)
+        /// <summary>
+        /// EditorSceneManager.OpenScene(path, Single)은 대상 씬이 지금 이미 열려 있고 저장 안 된
+        /// 변경사항이 있으면 경고 없이 그냥 버리고 디스크에 마지막으로 저장된 버전으로 되돌린다 —
+        /// 사용자가 씬 뷰에서 손으로 옮긴 걸 저장(Ctrl+S)하기 전에 아무 에디터 메뉴나 실행하면
+        /// 그 스크립트가 그 오브젝트를 전혀 안 건드려도 옮긴 게 사라져 보이는 원인이었다. 씬을
+        /// 여는 모든 부트스트랩 메서드는 시작할 때 이걸로 먼저 확인할 것.
+        /// </summary>
+        internal static bool CanSafelyOpenScene(string scenePath)
+        {
+            var active = EditorSceneManager.GetActiveScene();
+            if (active.path == scenePath && active.isDirty)
+            {
+                Debug.LogError($"[EditorTools] {scenePath}에 저장 안 된 변경사항이 있습니다 — " +
+                                "먼저 Ctrl+S로 씬을 저장한 뒤 이 메뉴를 다시 실행하세요(안 그러면 저장 " +
+                                "안 된 수정 내용이 사라집니다).");
+                return false;
+            }
+            return true;
+        }
+
+        internal static GameObject FindInScene(Scene scene, string name)
         {
             foreach (var root in scene.GetRootGameObjects())
             {
@@ -1501,9 +1749,86 @@ namespace WitchHour.EditorTools
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
+        // "성벽 체력바가 화면 위쪽 HUD에, 웨이브 진행 텍스트는 화면 아래 상점 패널 위에" 있던 걸
+        // 서로 맞바꿔달라는 요청 — 둘 다 다시 만들지 않고 있는 오브젝트를 그대로 재부모화해서
+        // 스프라이트/텍스트 참조가 끊길 위험 없이 위치만 맞바꾼다. 각자 자기 크기(바 860x42,
+        // 타이머 알약 400x60)는 그대로 두고 앵커/피벗/좌표만 서로의 예전 자리로 바꾼다.
+        [MenuItem("TinyKingdom/Swap Ward HP Bar and Wave Timer Positions")]
+        public static void SwapWardBarAndPrepTimer()
+        {
+            var hudGO = GameObject.Find("HudUI");
+            var prepGO = GameObject.Find("PrepTimerText");
+            if (hudGO == null || prepGO == null)
+            {
+                Debug.LogError("[ShopRosterUIBootstrap] HudUI 또는 PrepTimerText를 씬에서 못 찾음 — " +
+                                "Build Shop and Roster UI (Week 2)를 먼저 실행했는지 확인하세요.");
+                return;
+            }
+
+            var barBgT = hudGO.transform.Find("WardHpBarBg");
+            if (barBgT == null)
+            {
+                Debug.LogError("[ShopRosterUIBootstrap] HudUI 밑에서 WardHpBarBg를 못 찾음.");
+                return;
+            }
+
+            Transform canvasT = hudGO.transform.parent;
+            if (canvasT == null)
+            {
+                Debug.LogError("[ShopRosterUIBootstrap] HudUI가 Canvas 밑에 없음 — 씬 구조를 확인하세요.");
+                return;
+            }
+
+            // 성벽 체력바: HudUI 밑(위쪽) → Canvas 바로 밑, 예전에 PrepTimerText가 있던
+            // 하단 좌표로.
+            var barBgRect = barBgT.GetComponent<RectTransform>();
+            barBgT.SetParent(canvasT, false);
+            barBgRect.anchorMin = barBgRect.anchorMax = new Vector2(0.5f, 0f);
+            barBgRect.pivot = new Vector2(0.5f, 0f);
+            barBgRect.anchoredPosition = new Vector2(0, PanelHeight + 18f);
+
+            // 웨이브 진행 텍스트: Canvas 바로 밑(하단) → HudUI 밑, 예전에 성벽 체력바가 있던
+            // 상단 좌표로.
+            var prepRect = prepGO.GetComponent<RectTransform>();
+            prepGO.transform.SetParent(hudGO.transform, false);
+            prepRect.anchorMin = prepRect.anchorMax = new Vector2(0.5f, 1f);
+            prepRect.pivot = new Vector2(0.5f, 1f);
+            prepRect.anchoredPosition = new Vector2(0, -48f);
+
+            EditorUtility.SetDirty(hudGO);
+            EditorUtility.SetDirty(prepGO);
+            EditorUtility.SetDirty(barBgT.gameObject);
+            EditorSceneManager.MarkSceneDirty(hudGO.scene);
+            Debug.Log("[ShopRosterUIBootstrap] 성벽 체력바 ↔ 웨이브 진행 텍스트 위치를 맞바꿨습니다. Ctrl+S로 씬 저장하세요.");
+        }
+
         // 화면 우상단 구석에 배치 — HUD 바가 이미 폭을 꽉 채우고 있어서 겹칠 수 있다.
         // 다른 UI들처럼 프리팹+재실행해도 안 지워지는 구조라, 실제로 보고 자리가 안 맞으면
         // 씬에서 그냥 드래그로 옮기면 됨(이 메서드를 다시 안 건드려도 위치가 유지된다).
+        // BuildSpeedToggle 자체는 완성돼 있었는데, BuildShopAndRosterUI()의 레이아웃 생성 블록이
+        // "ShopPanel이 이미 있으면 건드리지 않음" 가드에 걸려서 실제로 씬에 심어진 적이 없었다
+        // (배속 로직/버튼 코드는 있는데 씬에 인스턴스가 없어 게임엔 안 보이는 상태였음). 이미
+        // 만들어진 다른 UI를 다시 안 건드리고 이것만 독립적으로 심을 수 있게 메뉴를 따로 뺐다.
+        [MenuItem("TinyKingdom/Add Battle Speed Toggle")]
+        public static void AddBattleSpeedToggle()
+        {
+            var canvasGO = GameObject.Find("Canvas");
+            if (canvasGO == null)
+            {
+                Debug.LogError("[ShopRosterUIBootstrap] Canvas를 못 찾음 — Battle.unity를 열고 다시 실행하세요.");
+                return;
+            }
+
+            var old = canvasGO.transform.Find("SpeedToggleButton");
+            if (old != null) Object.DestroyImmediate(old.gameObject);
+
+            BuildSpeedToggle(canvasGO.transform, GameFonts.Main);
+
+            EditorSceneManager.MarkSceneDirty(canvasGO.scene);
+            EditorSceneManager.SaveScene(canvasGO.scene);
+            Debug.Log("[ShopRosterUIBootstrap] 배속(x1/x2) 토글 버튼을 씬에 추가했습니다.");
+        }
+
         private static void BuildSpeedToggle(Transform canvasT, Font font)
         {
             var go = new GameObject("SpeedToggleButton", typeof(RectTransform), typeof(Image),
@@ -1535,7 +1860,7 @@ namespace WitchHour.EditorTools
             ConnectAsPrefab(go, $"{PrefabDir}/UI/SpeedToggleButton.prefab");
         }
 
-        private static Text AddLabel(Transform parent, string text, Font font, int fontSize,
+        internal static Text AddLabel(Transform parent, string text, Font font, int fontSize,
             Vector2? anchoredPosition = null, Vector2? sizeDelta = null, bool withShadow = true)
         {
             var go = new GameObject("Label", typeof(RectTransform), typeof(Text));
