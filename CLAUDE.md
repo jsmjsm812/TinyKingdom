@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-**위치 아워 (Witch Hour)** — a 2D pixel-art roguelite tower defense for mobile (portrait), built in Unity 6 / C# / UGUI, as a job-hunting portfolio piece (Unity client programmer + game planner tracks).
+**작은 왕국 (Tiny Kingdom, repo folder name: WitchHour)** — a 2D pixel-art roguelite tower defense for mobile (portrait), built in Unity 6 / C# / UGUI, as a job-hunting portfolio piece (Unity client programmer + game planner tracks).
 
 Full design reference lives in `Docs/GDD.md` — read it before implementing any gameplay system. It has the exact numbers (stats, costs, wave tables, save schema) that code should match.
 
