@@ -33,10 +33,14 @@ namespace WitchHour.Combat
         public float PathProgress => LanePath.CumulativeDistances[_waypointIndex]
             + Vector2.Distance(LanePath.Waypoints[_waypointIndex], FieldPosition);
 
-        private static readonly Color HitFlashColor = Color.white;
+        // 하양 플래시는 있어도 잘 안 보인다는 피드백 — "맞으면 빨갛게 변하는" 전형적인 피격
+        // 연출로 바꿈. 스프라이트 자체 색을 곱연산이 아니라 그대로 덮어써서(_image.color 대입)
+        // 원본 색조가 진하든 연하든 항상 눈에 띄는 새빨간 색이 뜨게 한다.
+        private static readonly Color HitFlashColor = new Color(1f, 0.15f, 0.15f);
         private static readonly Color ManaRewardTextColor = new Color(0.6f, 1f, 0.6f);
+        private static readonly Color DamageTextColor = new Color(1f, 0.95f, 0.3f);
         private static readonly Color NoSpriteFallbackColor = new Color(0.8f, 0.2f, 0.2f);
-        private const float HitFlashDuration = 0.08f;
+        private const float HitFlashDuration = 0.15f; // 0.08초는 너무 짧아 거의 안 보인다는 피드백 — 늘림
         // 값이 상수라 맞을 때마다 새로 할당할 필요 없이 하나만 캐싱해서 재사용(GC 압박 감소).
         private static readonly WaitForSeconds HitFlashWait = new WaitForSeconds(HitFlashDuration);
 
@@ -56,6 +60,9 @@ namespace WitchHour.Combat
         private Action<InvaderUnit> _releaseCallback;
         private Action<InvaderUnit> _onReachWard;
         private Action<InvaderUnit> _onDeath;
+        private Coroutine _dotCoroutine;
+        private Coroutine _slowCoroutine;
+        private float _slowMultiplier = 1f;
 
         private void Awake()
         {
@@ -65,9 +72,19 @@ namespace WitchHour.Combat
             if (hpFillImage != null) _hpBarRoot = hpFillImage.transform.parent as RectTransform;
         }
 
+        // ActiveUnits는 static이라 씬을 넘어 살아남는다 — "그만하기"로 배틀씬을 웨이브 도중에
+        // 나가면(침입자가 아직 살아있는 채로) 유니티가 씬 언로드로 이 오브젝트들을 전부 자동
+        // Destroy하는데, 그때 ReachWard/Die를 거치지 않으니 ActiveUnits에서 안 빠진 채 남는다 —
+        // GuardianUnit과 같은 이유의 방어(다음 배틀씬에서 죽은 참조가 타겟팅에 잡히는 것 방지).
+        private void OnDestroy()
+        {
+            ActiveUnits.Remove(this);
+        }
+
         public void Spawn(
             InvaderData data,
             float hpMultiplier,
+            float speedMultiplier,
             Action<InvaderUnit> releaseCallback,
             Action<InvaderUnit> onReachWard,
             Action<InvaderUnit> onDeath)
@@ -78,7 +95,14 @@ namespace WitchHour.Combat
             // 풀에서 재사용되는 인스턴스라 이전 생애의 체력바 상태가 남아있을 수 있다 — 즉시
             // 꽉 찬 상태로 리셋(스폰 순간부터 서서히 차오르는 건 오히려 어색함).
             if (hpFillImage != null) hpFillImage.rectTransform.localScale = Vector3.one;
-            _moveSpeedPixelsPerSecond = data.moveSpeed * FieldConstants.UnitSize * FieldConstants.GlobalInvaderSpeedMultiplier;
+            // 구역 속도배율(ZoneData.speedMultiplier — 존3 마왕의 영지 ×1.2 등)을 여기서 처음
+            // 실제로 곱한다. 예전엔 필드는 있는데 이동속도 계산엔 안 곱해지고 있었다("미구현"
+            // 상태로 GDD에 명시돼 있었음).
+            // 아이템 상점의 "느림" 디버프(RunItemEffects.InvaderSpeedMultiplier)도 여기서 같이
+            // 곱한다 — 구입 시점 이후 새로 스폰되는 침입자부터 적용됨(이미 걷고 있던 개체는
+            // 그대로, 준비 시간에 사서 다음 웨이브부터 적용받는 게 자연스러움).
+            _moveSpeedPixelsPerSecond = data.moveSpeed * FieldConstants.UnitSize
+                * FieldConstants.GlobalInvaderSpeedMultiplier * speedMultiplier * RunItemEffects.InvaderSpeedMultiplier;
             _releaseCallback = releaseCallback;
             _onReachWard = onReachWard;
             _onDeath = onDeath;
@@ -116,6 +140,20 @@ namespace WitchHour.Combat
                 StopCoroutine(_flashCoroutine);
                 _flashCoroutine = null;
             }
+            // 도트도 마찬가지 — 이전 생애에 마녀한테 도트를 맞다가 죽어서 풀로 반납됐을 수 있다.
+            if (_dotCoroutine != null)
+            {
+                StopCoroutine(_dotCoroutine);
+                _dotCoroutine = null;
+            }
+            // 둔화(연금술사/빙결사)도 마찬가지 — 이전 생애의 감속 효과가 안 풀린 채로 재사용되면
+            // 새로 태어난 침입자가 이유 없이 느리게 걷는 버그가 된다.
+            if (_slowCoroutine != null)
+            {
+                StopCoroutine(_slowCoroutine);
+                _slowCoroutine = null;
+            }
+            _slowMultiplier = 1f;
 
             ActiveUnits.Add(this);
         }
@@ -139,7 +177,7 @@ namespace WitchHour.Combat
             // 보여서 "순간이동 후 방향 전환" 같은 끊기는 느낌의 원인이었다. 남은 거리를 다음
             // 구간으로 이월시켜 같은 프레임 안에서 바로 이어 걷게 하면 코너에서도 끊김이 없다.
             // (waypoint 개수만큼만 반복하도록 안전장치를 둬서 무한루프 위험은 없앰.)
-            float remaining = _moveSpeedPixelsPerSecond * Time.deltaTime;
+            float remaining = _moveSpeedPixelsPerSecond * _slowMultiplier * Time.deltaTime;
             int safety = LanePath.Waypoints.Count;
             while (remaining > 0f && safety-- > 0)
             {
@@ -195,6 +233,11 @@ namespace WitchHour.Combat
             if (!IsAlive) return;
 
             CurrentHp -= amount;
+            // 맞은 만큼 숫자로 바로 보여준다 — 체력바만으로는 한 번에 얼마나 들어갔는지 체감이 안
+            // 된다는 피드백. 죽어서 Die()로 빠지는 경우도 마지막 타격량은 보여줘야 하니 여기서
+            // 먼저 띄우고 그 다음에 생사를 가른다.
+            FloatingTextEffect.Spawn(FieldPosition, $"-{Mathf.RoundToInt(amount)}", DamageTextColor, fontSize: 38);
+
             if (CurrentHp <= 0f)
             {
                 Die();
@@ -226,6 +269,48 @@ namespace WitchHour.Combat
             yield return HitFlashWait;
             _image.color = _baseColor;
             _flashCoroutine = null;
+        }
+
+        /// <summary>마녀(DotSingle)의 도트 — 즉발 적중 피해와 별개로 totalDamage를 durationSeconds에
+        /// 걸쳐 tickInterval 간격으로 나눠서 준다. 이미 도트가 걸려 있으면(마녀가 다시 적중시킨 경우)
+        /// 새 도트로 갈아치운다(중첩 대신 갱신 — 무한 중첩으로 밸런스가 터지는 걸 막기 위함).</summary>
+        public void ApplyDot(float totalDamage, float durationSeconds, float tickInterval)
+        {
+            if (!IsAlive || totalDamage <= 0f) return;
+            if (_dotCoroutine != null) StopCoroutine(_dotCoroutine);
+            _dotCoroutine = StartCoroutine(RunDot(totalDamage, durationSeconds, tickInterval));
+        }
+
+        private IEnumerator RunDot(float totalDamage, float durationSeconds, float tickInterval)
+        {
+            int tickCount = Mathf.Max(1, Mathf.RoundToInt(durationSeconds / Mathf.Max(tickInterval, 0.01f)));
+            float perTick = totalDamage / tickCount;
+            var wait = new WaitForSeconds(tickInterval);
+
+            for (int i = 0; i < tickCount; i++)
+            {
+                yield return wait;
+                if (!IsAlive) yield break;
+                TakeDamage(perTick);
+            }
+            _dotCoroutine = null;
+        }
+
+        /// <summary>연금술사(Area)/빙결사(Pierce)의 둔화 — 적중한 대상의 이동속도를 일정 시간
+        /// 낮춘다. 다시 맞으면(같은 대상을 또 적중) 중첩 대신 지속시간을 갱신한다.</summary>
+        public void ApplySlow(float multiplier, float durationSeconds)
+        {
+            if (!IsAlive) return;
+            if (_slowCoroutine != null) StopCoroutine(_slowCoroutine);
+            _slowCoroutine = StartCoroutine(RunSlow(multiplier, durationSeconds));
+        }
+
+        private IEnumerator RunSlow(float multiplier, float durationSeconds)
+        {
+            _slowMultiplier = multiplier;
+            yield return new WaitForSeconds(durationSeconds);
+            _slowMultiplier = 1f;
+            _slowCoroutine = null;
         }
 
         private void ReachWard()

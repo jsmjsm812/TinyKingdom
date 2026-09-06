@@ -8,7 +8,7 @@ namespace WitchHour.Combat
     /// <summary>
     /// TinyKingdom에서 구운 idle/action 프레임 배열(GuardianData.idleFrames 등)을 Image에 순환
     /// 재생하는 경량 컴포넌트. 별도 Animator 없이 UGUI Image 스프라이트만 갈아끼운다 —
-    /// FireBoltProjectile과 같은 "프레임 배열 + 코루틴" 패턴이라 전체 필드가 여전히 UGUI 하나로 통일된다.
+    /// WeaponProjectile과 같은 "프레임 배열 + 코루틴" 패턴이라 전체 필드가 여전히 UGUI 하나로 통일된다.
     /// </summary>
     [RequireComponent(typeof(Image))]
     public class SpriteFrameAnimator : MonoBehaviour

@@ -12,7 +12,7 @@ namespace WitchHour.Combat
         private const float Duration = 0.6f;
         private const float RiseDistance = 50f;
 
-        public static void Spawn(Vector2 position, string text, Color color)
+        public static void Spawn(Vector2 position, string text, Color color, int fontSize = 24)
         {
             RectTransform parent = GridManager.BattlefieldRoot;
             if (parent == null) return;
@@ -22,12 +22,12 @@ namespace WitchHour.Combat
 
             var rect = go.GetComponent<RectTransform>();
             rect.anchoredPosition = position;
-            rect.sizeDelta = new Vector2(120, 40);
+            rect.sizeDelta = new Vector2(160, 50);
 
             var uiText = go.GetComponent<Text>();
             uiText.text = text;
             uiText.font = GameFonts.Main;
-            uiText.fontSize = 24;
+            uiText.fontSize = fontSize;
             uiText.fontStyle = FontStyle.Bold;
             uiText.alignment = TextAnchor.MiddleCenter;
             uiText.color = color;

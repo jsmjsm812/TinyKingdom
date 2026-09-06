@@ -22,10 +22,19 @@ namespace WitchHour.Combat
 
         private static readonly float[] StarDamageMultiplier = { 1f, 1.8f, 3.0f };
 
+        // 합성이 데미지만 올려주면 "성급이 올라도 하는 짓은 똑같다"는 인상이라, 공격 방식별로
+        // 성급마다 능력 자체도 하나씩 강화되게 한다 — 궁수(Multi)는 화살 개수, 마법사류(Area)는
+        // 범위. Pierce(명사수/빙결사)는 이미 사거리 안 전원을 맞히는 최대치라 늘릴 여지가 없어서
+        // 제외. Single/DotSingle(마녀)/BuffSingle(왕)은 데미지(또는 도트 총량/오라 배율) 배율
+        // 스케일링만 적용된다 — 별도의 "능력 자체" 강화 축은 아직 없음.
+        private static readonly int[] MultiTargetCountByStar = { 2, 3, 4 };
+        private static readonly float[] AreaRadiusMultiplierByStar = { 1f, 1.3f, 1.6f };
+
         private SpriteFrameAnimator _frameAnimator;
 
         [SerializeField] private Text starText;
         [SerializeField] private Text attackText;
+        [SerializeField] private Image rangeIndicator;
         private Coroutine _mergeGlowCoroutine;
 
         public GuardianData Data { get; private set; }
@@ -36,10 +45,21 @@ namespace WitchHour.Combat
         private float _attackTimer;
         private bool _facingLeft;
 
+        // 왕(BuffSingle)의 "인접 아군 공격력 +15%" 오라 — 공격 쿨다운과 무관하게 매 프레임 갱신되는
+        // 상시 효과라 별도로 들고 있는다. 여러 왕이 동시에 사거리 안에 있으면 가장 높은 배율만 적용
+        // (중첩 안 함 — 왕을 여러 기 합성으로 늘리면 배율이 무한히 쌓이는 것 방지).
+        private float _auraAttackMultiplier = 1f;
+
+        // 대마법사의 "3초마다 범위 속박" — 공격 쿨다운(attackSpeed)과 완전히 별개의 주기라 따로 잰다.
+        private float _periodicRootTimer;
+
         // 베이크된 스프라이트를 256px 기준으로 구웠을 때 필드에서 보이는 크기 배율 — 캐릭터를
         // 발밑 기준으로 세워 그릴 때(아래 UpdateSpriteSize 참고) 이 배율로 UI 픽셀 크기를 정한다.
-        // 300/256(예전 고정 300x300 박스)보다 키워서 "캐릭터가 더 컸으면" 피드백을 반영했다.
-        private const float NativeToUiScale = 340f / 256f;
+        // 300/256(예전 고정 300x300 박스)보다 키워서 "캐릭터가 더 컸으면" 피드백을 반영했었으나,
+        // 슬롯 시각 크기(FieldConstants.SlotVisualSize)가 92.5로 작아진 뒤로는 반대로 캐릭터가
+        // 슬롯보다 훨씬 커 보이는 문제가 생겼다 — 슬롯도 200으로 키우면서 캐릭터는 실측 300 기준을
+        // 200으로(2/3배) 줄여 서로 크기가 맞게 했다.
+        private const float NativeToUiScale = 340f / 256f * (2f / 3f);
 
         private RectTransform _rect;
         private CanvasGroup _canvasGroup;
@@ -54,6 +74,13 @@ namespace WitchHour.Combat
             _rect = GetComponent<RectTransform>();
             _canvasGroup = GetComponent<CanvasGroup>();
             _rootCanvas = GetComponentInParent<Canvas>();
+            // 씬 구조상 GuardianPlacementManager(=Instantiate 직후 부모)가 Canvas 밑이 아니라
+            // 루트에 따로 있어서 위 GetComponentInParent가 못 찾는 경우가 있다 — 그러면
+            // OnBeginDrag에서 _rootCanvas.transform이 NullReferenceException을 던진다.
+            // GridManager.BattlefieldRoot는 항상 Canvas 밑에 있는 걸 보장하는 참조(다른 곳,
+            // 예: WeaponProjectile도 이걸로 부모를 찾음)라 이걸로 폴백한다.
+            if (_rootCanvas == null && GridManager.BattlefieldRoot != null)
+                _rootCanvas = GridManager.BattlefieldRoot.GetComponentInParent<Canvas>();
             _frameAnimator = GetComponent<SpriteFrameAnimator>();
             // Instantiate 직후(슬롯에 놓이기 전) 부모가 GuardianPlacementManager라 지금 캐시해둔다 —
             // 이후 슬롯으로 재배치돼도 이 참조 자체는 계속 유효하다.
@@ -89,17 +116,27 @@ namespace WitchHour.Combat
             UpdateSpriteSize(data);
             UpdateStarVisual();
             UpdateAttackVisual();
+            UpdateRangeIndicator(data);
+        }
+
+        /// <summary>사거리를 눈으로 볼 수 있었으면 좋겠다는 피드백 — 캐릭터 발밑에 반투명 원으로
+        /// 실제 공격 사거리(TryAttack이 쓰는 것과 동일한 rangePixels)를 항상 표시한다.</summary>
+        private void UpdateRangeIndicator(GuardianData data)
+        {
+            if (rangeIndicator == null) return;
+            float diameter = data.range * FieldConstants.UnitSize * 2f;
+            rangeIndicator.rectTransform.sizeDelta = new Vector2(diameter, diameter);
         }
 
         /// <summary>
         /// 예전엔 300x300 고정 박스에 preserveAspect로 넣었는데, 베이크된 원본이 캐릭터마다
-        /// 여백이 다른 정사각형(256x256)이라 실제 발 위치가 캐릭터마다 미묘하게 달라 보였다
-        /// ("슬롯이랑 캐릭터 위치가 안 맞다" 피드백의 원인 — 자세한 건 대화 기록 참고).
-        /// 스프라이트를 발밑 기준으로 빡빡하게 잘라낸 뒤(파이썬으로 알파 바운딩 박스 크롭),
-        /// 여기서 원본 픽셀 크기 그대로(NativeToUiScale 배율만 곱해서) 박스 크기를 잡고
-        /// pivot을 바닥(0.5, 0)으로 둔다 — 슬롯에 놓일 때 anchoredPosition이 (0,0)이 되므로,
-        /// 박스 바닥(=크롭된 스프라이트의 발밑)이 정확히 슬롯 중심에 선다. 캐릭터 원래 크기
-        /// 비율(트롤이 더 크고 마법사가 더 작은 것)은 원본 픽셀 크기를 그대로 쓰니 유지된다.
+        /// 여백이 다른 정사각형(256x256)이라 실제 발 위치가 캐릭터마다 미묘하게 달라 보였다.
+        /// 한때는 pivot을 바닥(0.5, 0)에 두고 "발이 슬롯 중심에 선다"는 방식을 썼는데,
+        /// 캐릭터가 슬롯보다 커서(300 vs 92.5) 박스 대부분이 슬롯 위로 붕 뜬 것처럼 보이는
+        /// 문제가 있었다 — 캐릭터/슬롯 크기를 200으로 맞춘 지금은 "슬롯 정중앙에 캐릭터"
+        /// 요청에 맞춰 pivot을 중앙(0.5, 0.5)으로 바꿨다: 슬롯에 놓일 때 anchoredPosition이
+        /// (0,0)이 되므로 박스 중심이 곧 슬롯 중심이 된다. 캐릭터 원래 크기 비율(트롤이 더
+        /// 크고 마법사가 더 작은 것)은 원본 픽셀 크기를 그대로 쓰니 유지된다.
         /// </summary>
         private void UpdateSpriteSize(GuardianData data)
         {
@@ -109,7 +146,7 @@ namespace WitchHour.Combat
                 : data.portrait;
             if (reference == null) return;
 
-            _rect.pivot = new Vector2(0.5f, 0f);
+            _rect.pivot = new Vector2(0.5f, 0.5f);
             _rect.sizeDelta = new Vector2(
                 reference.rect.width * NativeToUiScale,
                 reference.rect.height * NativeToUiScale);
@@ -120,10 +157,23 @@ namespace WitchHour.Combat
         private void UpdateAttackVisual()
         {
             if (attackText == null || Data == null) return;
-            float effectiveAttack = Data.attackPower * StarDamageMultiplier[StarLevel - 1];
+            float effectiveAttack = Data.attackPower * EffectiveStarMultiplier() * RunItemEffects.GuardianAttackPowerMultiplier * _auraAttackMultiplier;
             // 임의의 기호(예: 검 이모지)는 현재 폰트(GameFonts.Main)가 글리프를 안 가지고 있을 수
             // 있어 ASCII 접두어로 안전하게 — "★"는 starText에서 잘 나오는 걸 확인함.
             attackText.text = $"ATK {Mathf.RoundToInt(effectiveAttack)}";
+        }
+
+        /// <summary>아이템 상점의 "일시적 등급 상승" 버프(RunItemEffects.GuardianBonusStarLevels)를
+        /// 실제 합성 성급에 더해 데미지 배율 인덱스를 구한다 — 합성 성급 자체(StarLevel, ★ 표시)는
+        /// 안 건드리고 전투 계산에만 반영한다(버프가 풀리면 원래 합성 상태 그대로 남아야 하므로).</summary>
+        private float EffectiveStarMultiplier() => StarDamageMultiplier[EffectiveStarIndex()];
+
+        /// <summary>합성 성급 + 아이템 상점의 일시적 등급 상승을 합친 0-based 인덱스. 데미지 배율뿐
+        /// 아니라 화살 개수·범위 같은 능력 강화도 같은 기준으로 맞춰야 "성급 상승 버프 중엔 그
+        /// 성급의 능력까지 그대로 흉내낸다"는 게 일관되게 성립한다.</summary>
+        private int EffectiveStarIndex()
+        {
+            return Mathf.Clamp(StarLevel - 1 + RunItemEffects.GuardianBonusStarLevels, 0, StarDamageMultiplier.Length - 1);
         }
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -135,6 +185,7 @@ namespace WitchHour.Combat
             _originalParent = transform.parent;
             _originalAnchoredPosition = _rect.anchoredPosition;
             transform.SetParent(_rootCanvas.transform, true);
+            NormalizeScale();
             _canvasGroup.blocksRaycasts = false;
         }
 
@@ -151,10 +202,26 @@ namespace WitchHour.Combat
 
             GridSlot targetSlot = GridSlot.FindUnderPointer(eventData);
             if (targetSlot != null && _placementManager.TryMove(CurrentSlot, targetSlot))
+            {
+                NormalizeScale();
                 return;
+            }
 
             transform.SetParent(_originalParent, true);
             _rect.anchoredPosition = _originalAnchoredPosition;
+            NormalizeScale();
+        }
+
+        // SetParent(worldPositionStays: true)는 "화면에 보이는 크기를 그대로 유지"하려고
+        // localScale을 자동으로 다시 계산하는데, true/false를 섞어서 여러 번 부모를 바꾸다 보면
+        // (집어들 때 true, 슬롯에 놓을 때는 GridSlot.TryPlace가 false) 그 보정값이 누적돼서
+        // 슬롯을 옮길 때마다 캐릭터가 조금씩 작아지는 버그가 있었다 — localScale의 "크기"는
+        // 항상 정확히 1이어야 하고(실제 크기는 UpdateSpriteSize가 정하는 sizeDelta가 전담),
+        // 좌우 반전(_facingLeft)만 부호로 표현해야 하므로 부모가 바뀔 때마다 강제로 재설정한다.
+        private void NormalizeScale()
+        {
+            float sign = _facingLeft ? -1f : 1f;
+            _rect.localScale = new Vector3(sign, 1f, 1f);
         }
 
         /// <summary>GridSlot.TryPlace에서 호출 — 필드 좌표 갱신 + 합성 대상 목록 등록.</summary>
@@ -169,13 +236,22 @@ namespace WitchHour.Combat
         /// <summary>합성으로 소모될 때 호출.</summary>
         public void RemoveFromField()
         {
-            ActiveUnits.Remove(this);
             if (CurrentSlot != null)
             {
                 CurrentSlot.Clear();
                 CurrentSlot = null;
             }
             Destroy(gameObject);
+        }
+
+        // ActiveUnits는 static이라 씬을 넘어 살아남는다 — "그만하기"/결과창으로 배틀씬을 나가면
+        // 유니티가 씬 언로드로 이 오브젝트들을 전부 자동 Destroy하는데, 그때도 여기가 불려서
+        // 스스로 목록에서 빠진다. 이걸 안 하면 다음 배틀씬 진입 때 죽은 참조가 그대로 남아있다가
+        // MergeSystem이 같은 (데이터,성급) 그룹으로 묶어버려서 "이미 죽은 오브젝트를 또 Destroy"
+        // 하려다 MissingReferenceException이 나는 버그가 있었다.
+        private void OnDestroy()
+        {
+            ActiveUnits.Remove(this);
         }
 
         /// <summary>
@@ -235,13 +311,24 @@ namespace WitchHour.Combat
         {
             if (Data == null) return;
 
+            // 사거리 원은 배치 계획 세우는 준비 시간에만 필요하고, 웨이브 진행 중(관전만 하는
+            // 구간)엔 화면만 지저분하게 만든다 — 전투 중엔 꺼둔다.
+            if (rangeIndicator != null)
+            {
+                bool shouldShow = !WaveSpawner.IsBattleActive;
+                if (rangeIndicator.gameObject.activeSelf != shouldShow)
+                    rangeIndicator.gameObject.SetActive(shouldShow);
+            }
+
             // 공격 쿨다운과 무관하게 매 프레임 갱신 — 침입자가 사거리 안에서 계속 이동하므로
             // "지금 조준 중인" 타겟 쪽으로 실시간으로 몸을 돌려야 자연스럽다(쿨다운 중엔 안 움직이면
             // 방금 공격한 타겟이 지나가버려도 계속 그쪽을 보고 있는 것처럼 보임).
             UpdateFacing();
+            UpdateAuraMultiplier();
+            UpdatePeriodicRoot();
 
             _attackTimer += Time.deltaTime;
-            float attackCooldown = 1f / Data.attackSpeed;
+            float attackCooldown = 1f / (Data.attackSpeed * RunItemEffects.GuardianAttackSpeedMultiplier);
             if (_attackTimer < attackCooldown) return;
 
             if (TryAttack())
@@ -276,23 +363,39 @@ namespace WitchHour.Combat
         private bool TryAttack()
         {
             float rangePixels = Data.range * FieldConstants.UnitSize;
-            float damage = Data.attackPower * StarDamageMultiplier[StarLevel - 1];
+            float damage = Data.attackPower * EffectiveStarMultiplier() * RunItemEffects.GuardianAttackPowerMultiplier * _auraAttackMultiplier;
+
+            // 도적의 치명타 — specialEffectDescription에는 있었지만 실제로는 미구현이었던 효과.
+            // 공격 하나당 한 번만 판정(다중/관통이라도 이번 공격 전체에 동일하게 적용).
+            if (Data.critChance > 0f && UnityEngine.Random.value < Data.critChance)
+                damage *= Data.critMultiplier;
 
             bool attacked;
             switch (Data.attackType)
             {
                 case AttackType.Multi:
-                    attacked = AttackNearest(rangePixels, damage, maxTargets: 2);
+                    // 궁수류(Mira) — 합성할 때마다 화살이 1개씩 늘어난다(★1=2발 → ★2=3발 → ★3=4발).
+                    attacked = AttackNearest(rangePixels, damage, maxTargets: MultiTargetCountByStar[EffectiveStarIndex()]);
                     break;
                 case AttackType.Pierce:
                     attacked = AttackNearest(rangePixels, damage, maxTargets: int.MaxValue);
                     break;
                 case AttackType.Area:
-                    attacked = AttackAreaAroundNearest(rangePixels, damage);
+                    // 마법사류(Astel/Sera) — 합성할수록 범위 자체가 넓어진다(★1 기준 ×1.0 → ×1.3 → ×1.6).
+                    attacked = AttackAreaAroundNearest(rangePixels, damage, AreaRadiusMultiplierByStar[EffectiveStarIndex()]);
+                    break;
+                case AttackType.DotSingle:
+                    // 마녀(Chloe) — 즉발 피해(damage) + 별도로 dotTotalDamage를 dotDurationSeconds에
+                    // 걸쳐 추가로 준다(적중 즉시 총 피해 = 즉발 + 도트, GuardianData.specialEffectDescription 그대로).
+                    attacked = AttackDotSingle(rangePixels, damage);
+                    break;
+                case AttackType.BuffSingle:
+                    // 왕(Ophelia) — 직접 공격하지 않는다. 사거리 안 아군에게 상시 오라를 주는 게
+                    // 능력의 전부라서(Update의 UpdateAuraMultiplier가 매 프레임 처리) 여기선 할 게 없다.
+                    attacked = false;
                     break;
                 default:
-                    // Single / DotSingle / BuffSingle: MVP는 즉발 단일 피해로 처리.
-                    // 도트·버프 연출은 이 타겟팅 로직을 안 건드리고 이펙트 레이어만 나중에 얹으면 됨.
+                    // Single: 즉발 단일 피해.
                     attacked = AttackNearest(rangePixels, damage, maxTargets: 1);
                     break;
             }
@@ -306,6 +409,63 @@ namespace WitchHour.Combat
             return attacked;
         }
 
+        /// <summary>왕(BuffSingle)이 사거리 안에 있으면 아군 전체(본인 제외)에게 공격력 배율을
+        /// 상시 적용한다 — 공격 쿨다운이 아니라 매 프레임 재계산되는 오라라서 Update에서 직접 부른다.
+        /// 왕이 여러 기라도 배율은 중첩하지 않고 가장 높은 값 하나만 적용한다.</summary>
+        private void UpdateAuraMultiplier()
+        {
+            float best = 1f;
+            foreach (var source in ActiveUnits)
+            {
+                if (source == this || source.Data == null) continue;
+                if (source.Data.attackType != AttackType.BuffSingle) continue;
+
+                float sourceRangePixels = source.Data.range * FieldConstants.UnitSize;
+                if (Vector2.Distance(FieldPosition, source.FieldPosition) > sourceRangePixels) continue;
+
+                if (source.Data.adjacentAllyAttackMultiplier > best)
+                    best = source.Data.adjacentAllyAttackMultiplier;
+            }
+
+            if (Mathf.Approximately(best, _auraAttackMultiplier)) return;
+            _auraAttackMultiplier = best;
+            UpdateAttackVisual();
+        }
+
+        /// <summary>대마법사의 "3초마다 범위 속박" — 공격 쿨다운(attackSpeed)과 완전히 독립적인
+        /// 주기다. 본인 위치를 중심으로 areaRadius 안 전체를 잠깐 묶는다(ApplySlow(0, ...)로
+        /// 이동속도를 0으로 만드는 것 — 별도 "속박" 상태 없이 둔화 배율 0을 재사용).</summary>
+        private void UpdatePeriodicRoot()
+        {
+            if (!Data.hasPeriodicRoot) return;
+
+            _periodicRootTimer += Time.deltaTime;
+            if (_periodicRootTimer < Data.periodicRootInterval) return;
+            _periodicRootTimer = 0f;
+
+            float radiusPixels = Data.areaRadius * AreaRadiusMultiplierByStar[EffectiveStarIndex()] * FieldConstants.UnitSize;
+            foreach (var invader in InvaderUnit.ActiveUnits)
+            {
+                if (Vector2.Distance(invader.FieldPosition, FieldPosition) <= radiusPixels)
+                    invader.ApplySlow(0f, Data.periodicRootDuration);
+            }
+        }
+
+        private bool AttackDotSingle(float rangePixels, float instantDamage)
+        {
+            var targets = FindTargetsInRange(rangePixels, 1);
+            if (targets.Count == 0) return false;
+
+            var target = targets[0];
+            target.TakeDamage(instantDamage);
+
+            float dotTotal = Data.dotTotalDamage * EffectiveStarMultiplier() * RunItemEffects.GuardianAttackPowerMultiplier * _auraAttackMultiplier;
+            target.ApplyDot(dotTotal, Data.dotDurationSeconds, Data.dotTickInterval);
+
+            WeaponProjectile.Spawn(FieldPosition, target.FieldPosition, Data.projectileSprite, Data.projectileRotationOffsetDegrees);
+            return true;
+        }
+
         private bool AttackNearest(float rangePixels, float damage, int maxTargets)
         {
             var targets = FindTargetsInRange(rangePixels, maxTargets);
@@ -314,24 +474,36 @@ namespace WitchHour.Combat
             foreach (var target in targets)
             {
                 target.TakeDamage(damage);
-                FireBoltProjectile.Spawn(FieldPosition, target.FieldPosition);
+                // 빙결사(Pierce)의 "관통 대상 전체 이동속도 감소" — specialEffectDescription에는
+                // 적혀있었지만 실제로 구현이 안 돼있던 효과라 여기서 새로 연결한다.
+                if (Data.appliesSlowOnHit) target.ApplySlow(Data.slowMultiplier, Data.slowDurationSeconds);
+                // 야만전사의 "5% 확률 기절" — 마찬가지로 미구현이었던 효과. 별도 "기절" 상태 없이
+                // 대마법사 속박과 같은 방식(ApplySlow(0, ...))으로 이동을 잠깐 완전히 멈춘다.
+                if (Data.stunChance > 0f && UnityEngine.Random.value < Data.stunChance)
+                    target.ApplySlow(0f, Data.stunDurationSeconds);
+                WeaponProjectile.Spawn(FieldPosition, target.FieldPosition, Data.projectileSprite, Data.projectileRotationOffsetDegrees);
             }
             return true;
         }
 
-        private bool AttackAreaAroundNearest(float rangePixels, float damage)
+        private bool AttackAreaAroundNearest(float rangePixels, float damage, float radiusMultiplier)
         {
             var nearest = FindTargetsInRange(rangePixels, 1);
             if (nearest.Count == 0) return false;
 
-            float areaRadiusPixels = Data.areaRadius * FieldConstants.UnitSize;
+            float areaRadiusPixels = Data.areaRadius * radiusMultiplier * FieldConstants.UnitSize;
             Vector2 center = nearest[0].FieldPosition;
-            FireBoltProjectile.Spawn(FieldPosition, center);
+            WeaponProjectile.Spawn(FieldPosition, center, Data.projectileSprite, Data.projectileRotationOffsetDegrees);
 
             foreach (var invader in InvaderUnit.ActiveUnits)
             {
                 if (Vector2.Distance(invader.FieldPosition, center) <= areaRadiusPixels)
+                {
                     invader.TakeDamage(damage);
+                    // 연금술사(Area)의 "피격 대상 이동속도 감소" — 마찬가지로 설명만 있고 실제로는
+                    // 안 구현돼 있던 효과.
+                    if (Data.appliesSlowOnHit) invader.ApplySlow(Data.slowMultiplier, Data.slowDurationSeconds);
+                }
             }
             return true;
         }
