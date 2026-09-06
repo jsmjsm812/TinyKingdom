@@ -105,3 +105,6 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# 개발용 디버그 캡처(F2) — 게임 소스가 아니라 로컬 산출물
+/Screenshots/
