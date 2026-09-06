@@ -25,10 +25,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 941d40d9540dbcc4ebc6f17b19cf4320, type: 3}
   - {fileID: 21300000, guid: e3331b90ce3de4046b9141301d7068b3, type: 3}
   - {fileID: 21300000, guid: 0dcb5c53a3ff27544b673e7523dbd55c, type: 3}
-  range: 3
+  weaponSprite: {fileID: 21300000, guid: ecda0e4e130761f43b18c4e5b951e985, type: 3}
+  projectileSprite: {fileID: 21300000, guid: ecda0e4e130761f43b18c4e5b951e985, type: 3}
+  projectileRotationOffsetDegrees: 90
+  range: 4
   attackSpeed: 1.2
   attackType: 0
   attackPower: 10
   areaRadius: 0
   specialEffectDescription: "\u2014"
-  shopCost: 40
+  shopCost: 35

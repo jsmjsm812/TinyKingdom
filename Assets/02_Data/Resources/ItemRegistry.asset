@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d5aed1aaed7ab449d57b7d25dc465f, type: 3}
+  m_Name: ItemRegistry
+  m_EditorClassIdentifier: Assembly-CSharp::WitchHour.Data.ItemRegistry
+  allItems:
+  - {fileID: 11400000, guid: fdfca55598b9c404097abb7706b7ead7, type: 2}
+  - {fileID: 11400000, guid: c9e71c21a34257046ac6c3d9272f035e, type: 2}
+  - {fileID: 11400000, guid: a30f8047921f75146a3e1434d3614464, type: 2}
+  - {fileID: 11400000, guid: c3d7968ad6f43eb49be02971f71079c7, type: 2}

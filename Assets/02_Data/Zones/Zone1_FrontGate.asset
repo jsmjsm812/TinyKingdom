@@ -11,13 +11,20 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd96abb29d6bfee49a7c9a4e1caff890, type: 3}
   m_Name: Zone1_FrontGate
-  m_EditorClassIdentifier:
-  zoneName: 왕국 변경
+  m_EditorClassIdentifier: 
+  zoneName: "\uC655\uAD6D\uC758 \uAD00\uBB38"
   zoneIndex: 1
-  hpMultiplier: 1.15
+  fieldBackground: {fileID: 21300000, guid: 8620852b3fa30df41bdbd008f926cf20, type: 3}
+  pathColor: {r: 0.851, g: 0.725, b: 0.4, a: 1}
+  pathTrimTint: {r: 1, g: 1, b: 1, a: 1}
+  hpMultiplier: 1
   speedMultiplier: 1
   manaMultiplier: 1
   bossInvader: {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c0e, type: 2}
-  specialRuleDescription: 없음(입문)
+  wardHpLossPerWave: 0
+  blockedSlotIndices: []
+  specialRuleDescription: "\uC5C6\uC74C(\uC785\uBB38)"
   unlockedGuardians:
   - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c05, type: 2}
+  - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c06, type: 2}
+  - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c07, type: 2}

@@ -34,4 +34,4 @@ MonoBehaviour:
   baseHp: 300
   moveSpeed: 0.9
   wardDamage: 2
-  manaCrystalReward: 3
+  manaCrystalReward: 7

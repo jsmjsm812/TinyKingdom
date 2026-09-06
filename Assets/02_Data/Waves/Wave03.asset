@@ -19,5 +19,4 @@ MonoBehaviour:
   - invader: {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c12, type: 2}
     count: 4
   spawnInterval: 1.5
-  hpMultiplier: 1
   isBossWave: 0

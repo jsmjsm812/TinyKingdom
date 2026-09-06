@@ -15,11 +15,10 @@ MonoBehaviour:
   waveNumber: 9
   spawnEntries:
   - invader: {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c0b, type: 2}
-    count: 8
+    count: 14
   - invader: {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c0c, type: 2}
-    count: 4
+    count: 7
   - invader: {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c0d, type: 2}
-    count: 3
+    count: 5
   spawnInterval: 0.8
-  hpMultiplier: 2
   isBossWave: 0

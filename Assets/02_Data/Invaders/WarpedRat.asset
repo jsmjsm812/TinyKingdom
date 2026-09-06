@@ -31,7 +31,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 214dae880b66499438ff5eb3743d7a7f, type: 3}
   - {fileID: 21300000, guid: aebfbf4cbc4f76a4597d93015f1fff5f, type: 3}
   visualScale: 2.6
-  baseHp: 150
+  baseHp: 85
   moveSpeed: 1.5
   wardDamage: 1
-  manaCrystalReward: 2
+  manaCrystalReward: 5

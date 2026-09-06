@@ -25,10 +25,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 21d8f4c9ef4fe7f4cbf9941c010d21ca, type: 3}
   - {fileID: 21300000, guid: dbe6b7e89e08cc04ba21d9f7b680f607, type: 3}
   - {fileID: 21300000, guid: 06b283c01e7345f47869bf9d748918a4, type: 3}
-  range: 2
+  weaponSprite: {fileID: 21300000, guid: 6df336f9b1d651b4998c460029adae1c, type: 3}
+  projectileSprite: {fileID: 21300000, guid: ebabb07893b14f44d8638b5956629f0e, type: 3}
+  projectileRotationOffsetDegrees: 0
+  range: 3
   attackSpeed: 0.8
   attackType: 2
-  attackPower: 16
+  attackPower: 24
   areaRadius: 1
-  specialEffectDescription: "\uD53C\uACA9 \uB300\uC0C1 \uC774\uB3D9\uC18D\uB3C4 -20%, 2\uCD08"
-  shopCost: 100
+  appliesSlowOnHit: 1
+  slowMultiplier: 0.75
+  slowDurationSeconds: 2.5
+  specialEffectDescription: "\uD53C\uACA9 \uB300\uC0C1 \uC774\uB3D9\uC18D\uB3C4 -25%, 2.5\uCD08"
+  shopCost: 90

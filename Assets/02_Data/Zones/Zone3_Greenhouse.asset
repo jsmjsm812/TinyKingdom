@@ -11,15 +11,18 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd96abb29d6bfee49a7c9a4e1caff890, type: 3}
   m_Name: Zone3_Greenhouse
-  m_EditorClassIdentifier:
-  zoneName: 마왕의 영지
+  m_EditorClassIdentifier: 
+  zoneName: "\uB9C8\uC655\uC758 \uC601\uC9C0"
   zoneIndex: 3
+  fieldBackground: {fileID: 21300000, guid: 3e92e9b2e79c24a4cae9e6018fac78af, type: 3}
+  pathColor: {r: 0.4, g: 0.22, b: 0.38, a: 1}
+  pathTrimTint: {r: 0.85, g: 0.24, b: 1.8, a: 1}
   hpMultiplier: 2
   speedMultiplier: 1.2
   manaMultiplier: 1.6
   bossInvader: {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c10, type: 2}
-  specialRuleDescription: 웨이브 시작마다 성벽 HP -1
+  wardHpLossPerWave: 1
+  blockedSlotIndices: []
+  specialRuleDescription: "\uC6E8\uC774\uBE0C \uC2DC\uC791\uB9C8\uB2E4 \uC131\uBCBD HP -1"
   unlockedGuardians:
-  - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c07, type: 2}
-  - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c09, type: 2}
   - {fileID: 11400000, guid: 9f3d81c2b4a67e0f5c1d9b3a7e2f4c0a, type: 2}

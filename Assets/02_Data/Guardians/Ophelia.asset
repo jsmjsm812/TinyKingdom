@@ -25,10 +25,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ba15ffd1635ee934dbd625256797bbb6, type: 3}
   - {fileID: 21300000, guid: b127e677b49cccd4da5c5d4aea7ed6df, type: 3}
   - {fileID: 21300000, guid: f91c2be5b3717754eac3b3172ade1097, type: 3}
-  range: 2
+  weaponSprite: {fileID: 21300000, guid: cc94a46e469ad7c49b4a73e8a9a4f0a1, type: 3}
+  projectileSprite: {fileID: 21300000, guid: cc94a46e469ad7c49b4a73e8a9a4f0a1, type: 3}
+  projectileRotationOffsetDegrees: 90
+  range: 3
   attackSpeed: 0.8
   attackType: 5
   attackPower: 15
   areaRadius: 0
-  specialEffectDescription: "\uC778\uC811 \uC2AC\uB86F \uC544\uAD70 \uACF5\uACA9\uB825 +15% (\uBCF8\uC778 \uC81C\uC678)"
-  shopCost: 250
+  dotTotalDamage: 0
+  dotDurationSeconds: 2
+  dotTickInterval: 0.5
+  adjacentAllyAttackMultiplier: 1.25
+  specialEffectDescription: "\uC778\uC811 \uC2AC\uB86F \uC544\uAD70 \uACF5\uACA9\uB825 +25% (\uBCF8\uC778 \uC81C\uC678)"
+  shopCost: 160

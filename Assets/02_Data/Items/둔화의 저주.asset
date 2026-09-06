@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4c4df8dca201646ad672cf1c6932cd, type: 3}
+  m_Name: "\uB454\uD654\uC758 \uC800\uC8FC"
+  m_EditorClassIdentifier: Assembly-CSharp::WitchHour.Data.ItemData
+  itemName: "\uB454\uD654\uC758 \uC800\uC8FC"
+  description: "\uC774\uBC88 \uCD9C\uC804 \uB3D9\uC548\n\uCE68\uC785\uC790 \uC774\uB3D9\uC18D\uB3C4 -20%"
+  icon: {fileID: 21300000, guid: b5e27650e30fc5049aeb7af34be79b77, type: 3}
+  iconTint: {r: 1, g: 1, b: 1, a: 1}
+  cardAccent: {r: 0.3, g: 0.55, b: 0.95, a: 1}
+  effectType: 3
+  effectValue: 0.2
+  cost: 60
