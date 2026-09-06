@@ -22,9 +22,6 @@ namespace WitchHour.Data
         [Tooltip("스폰 간격(초)")]
         public float spawnInterval;
 
-        [Header("HP 배율 (GDD.md 13번 표 그대로, 구역 배율과 곱해짐)")]
-        public float hpMultiplier = 1f;
-
         [Tooltip("체크 시 현재 ZoneData.bossInvader를 1마리 추가 스폰 (10웨이브용)")]
         public bool isBossWave;
     }

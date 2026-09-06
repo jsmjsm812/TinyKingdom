@@ -26,5 +26,16 @@ namespace WitchHour.Data
                 default: return Color.white;
             }
         }
+
+        /// <summary>배경색 밝기(휘도)에 맞춰 항상 읽히는 글자색을 골라준다 — 어두운 카드엔 흰색,
+        /// 밝은 카드엔 검은색("배경이 어두운 카드는 흰색, 밝은 카드는 검은색" 피드백). 등급별
+        /// 카드 배경(GetCardColor)처럼 코드에서 동적으로 색을 입히는 곳은 배경만 바꾸고 글자색을
+        /// 고정해두면, 나중에 등급 색이 바뀌었을 때 글자가 안 보이게 될 수 있다 — 매번 이 함수로
+        /// 다시 계산하면 그럴 일이 없다.</summary>
+        public static Color GetReadableTextColor(Color background)
+        {
+            float luminance = 0.299f * background.r + 0.587f * background.g + 0.114f * background.b;
+            return luminance > 0.5f ? Color.black : Color.white;
+        }
     }
 }
