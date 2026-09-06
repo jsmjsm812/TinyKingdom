@@ -20,6 +20,12 @@ namespace WitchHour.UI
         // 틱 소리를 내려고 마지막으로 재생한 정수 초를 기억해둔다.
         private int _lastTickSecond = -1;
 
+        // HudUI에 따로 있던 "웨이브 X/10" 표시가 준비 단계에선 아직 한 번도 안 갱신돼서(첫
+        // OnWaveStarted 전까지 빈 텍스트) 그 구간엔 진행도를 전혀 알 수 없었다("웨이브 진행 중
+        // 바에 현재 웨이브도 합쳐서 넣자" 피드백) — 이제 이 배너 하나가 준비 중/전투 중 내내
+        // 항상 "웨이브 N/10" 진행도를 같이 보여준다.
+        private int _upcomingWaveNumber = 1;
+
         private void OnEnable()
         {
             waveSpawner.OnPrepPhaseStarted += HandlePrepStarted;
@@ -34,8 +40,9 @@ namespace WitchHour.UI
             waveSpawner.OnWaveStarted -= HandleWaveStarted;
         }
 
-        private void HandlePrepStarted()
+        private void HandlePrepStarted(int upcomingWaveNumber)
         {
+            _upcomingWaveNumber = upcomingWaveNumber;
             shopManager.RerollAll(free: true);
             _lastTickSecond = -1;
         }
@@ -43,7 +50,7 @@ namespace WitchHour.UI
         private void HandlePrepTimeChanged(float remaining)
         {
             int seconds = Mathf.CeilToInt(remaining);
-            timerText.text = $"다음 웨이브까지 {seconds}초";
+            timerText.text = $"웨이브 {_upcomingWaveNumber}/{waveSpawner.TotalWaves} · 다음 웨이브까지 {seconds}초";
 
             // 마지막 3초만 틱 — 매 프레임 불리는 이벤트라 정수 초가 실제로 바뀐 순간에만 재생.
             if (seconds <= 3 && seconds >= 1 && seconds != _lastTickSecond)
@@ -55,7 +62,7 @@ namespace WitchHour.UI
 
         private void HandleWaveStarted(int waveNumber)
         {
-            timerText.text = $"{waveNumber}웨이브 진행 중";
+            timerText.text = $"웨이브 {waveNumber}/{waveSpawner.TotalWaves} 진행 중";
         }
     }
 }

@@ -40,9 +40,18 @@ namespace WitchHour.UI
                     : "";
 
             // 등급별로 카드 색/테두리를 다르게 줘서 한눈에 희귀도가 보이게 한다.
-            cardBackground.color = hasData ? RarityColors.GetCardColor(data.rarity) : EmptyCardColor;
+            Color bg = hasData ? RarityColors.GetCardColor(data.rarity) : EmptyCardColor;
+            cardBackground.color = bg;
             cardOutline.enabled = hasData;
             if (hasData) cardOutline.effectColor = RarityColors.GetAccentColor(data.rarity);
+
+            // 배경이 등급마다 동적으로 바뀌는데 글자색은 고정이면, 나중에 등급 색을 밝게 바꿨을 때
+            // 안 보이게 될 수 있다("배경이 어두운 카드는 흰색, 밝은 카드는 검은색" 피드백) —
+            // 실제 배경 밝기 기준으로 다시 계산한다. costText는 제외 — HUD 금화색과 맞춘 고정
+            // 금색이 의도된 디자인이라(ShopRosterUIBootstrap 참고) 여기서 덮어쓰면 안 됨.
+            Color textColor = RarityColors.GetReadableTextColor(bg);
+            nameText.color = textColor;
+            if (statsText != null) statsText.color = textColor;
         }
 
         public void OnClickBuy()

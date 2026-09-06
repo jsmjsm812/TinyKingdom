@@ -10,6 +10,13 @@ namespace WitchHour.UI
     {
         [SerializeField] private string battleScene = "Battle";
 
+        // 로비 화면을 열 때마다 이번 출전 계획(골드 200 + 아이템 상점)을 새로 시작한다 —
+        // 아직 전투에 들어간 적 없이 로비만 오간 거라 이전 계획을 버려도 잃을 게 없다.
+        private void Awake()
+        {
+            RunSession.BeginNewRun();
+        }
+
         /// <summary>ZoneButtonView가 카드를 눌렀을 때 호출 — 잠긴 구역이면 아무 일도 안 한다.</summary>
         public void OnClickZone(ZoneData zone)
         {

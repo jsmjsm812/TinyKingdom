@@ -32,6 +32,8 @@ namespace WitchHour.UI
             }
             _timeScaleBeforeOpen = Time.timeScale;
             Time.timeScale = 0f;
+            // 도감 패널과 같은 이유로 — 다른 UI에 가려지지 않도록 열 때마다 맨 앞으로.
+            panel.transform.SetAsLastSibling();
             panel.SetActive(true);
             AudioManager.Instance?.PlayButtonClick();
         }

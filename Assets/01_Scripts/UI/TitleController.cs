@@ -14,5 +14,15 @@ namespace WitchHour.UI
             AudioManager.Instance?.PlayButtonClick();
             SceneManager.LoadScene(homeScene);
         }
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        // Home/Battle 씬은 각자 디버그 오버레이(HomeDebugOverlay/DebugOverlay)의 Update()에서
+        // F2를 듣지만, Title 씬엔 그런 오버레이 자체가 없어서 F2가 하나도 안 먹혔다 — 여기서
+        // 직접 호출해준다("타이틀만 스크린샷이 안 됨" 버그).
+        private void Update()
+        {
+            WitchHour.DebugTools.DebugScreenshotUtil.CheckHotkey();
+        }
+#endif
     }
 }
