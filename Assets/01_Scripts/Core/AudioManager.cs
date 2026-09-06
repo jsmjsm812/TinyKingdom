@@ -8,9 +8,9 @@ namespace WitchHour.Core
     /// 살아있는다(BootLoader.cs 주석에 이미 자리를 비워뒀던 부분). 씬 이름 기준으로 BGM을
     /// 자동 전환하고, 각 게임 이벤트는 정적 Instance를 통해 SFX 메서드를 직접 호출한다.
     ///
-    /// SFX 클립은 전부 Brackeys 2D Mega Pack(무료, 이미 프로젝트에 임포트됨)에서 가져온다 —
-    /// BGM은 아직 임포트된 트랙이 없어서 필드를 비워둬도 죽지 않게(Play(null) 무시) 해뒀다.
-    /// 나중에 BGM 에셋을 Assets/04_Audio/BGM에 넣고 이 컴포넌트 인스펙터에 끌어넣으면 바로 재생됨.
+    /// SFX 클립은 주로 Brackeys 2D Mega Pack, 일부는 8-bit SFX & UI Sounds / ShootingSound
+    /// 팩에서 가져온다(AudioBootstrap.SetupAudioManager 참고). BGM은 OldCartoonMusicFree 팩
+    /// 2트랙(로비용/배틀용)을 쓴다. 클립이 비어있어도 죽지 않게(Play(null) 무시) 방어는 유지.
     /// </summary>
     public class AudioManager : MonoBehaviour
     {

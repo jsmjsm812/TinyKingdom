@@ -25,6 +25,24 @@ namespace WitchHour.Core
 
         public static bool HasSave() => File.Exists(FilePath);
 
+        /// <summary>디버그 전용 — 세이브 파일을 지우고 메모리 상태(GameProgress)도 같이 초기화한다.
+        /// "저장된 거 리셋은 어떻게 함" 질문에 대한 답 — 파일 경로는 Application.persistentDataPath
+        /// (Windows 기준 %userprofile%\AppData\LocalLow\{companyName}\{productName}\save.json)라
+        /// 직접 지워도 되지만, 플레이 중인 세션의 메모리 상태까지 지우려면 이 메서드가 필요하다.</summary>
+        public static void DeleteSave()
+        {
+            try
+            {
+                if (File.Exists(FilePath)) File.Delete(FilePath);
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"[SaveSystem] 세이브 파일 삭제 실패: {e.Message}");
+            }
+
+            GameProgress.ResetAll();
+        }
+
         public static void Save()
         {
             var data = new SaveData
@@ -34,6 +52,9 @@ namespace WitchHour.Core
                     .Where(g => g != null)
                     .Select(g => g.name)
                     .ToArray(),
+                totalClears = GameProgress.TotalClears,
+                totalSummons = GameProgress.TotalSummons,
+                checkpoints = GameProgress.Checkpoints,
             };
 
             try
@@ -69,6 +90,13 @@ namespace WitchHour.Core
 
             for (int i = 0; i < GameProgress.ZoneCleared.Length && i < data.zoneCleared.Length; i++)
                 GameProgress.ZoneCleared[i] = data.zoneCleared[i];
+            GameProgress.RestoreStats(data.totalClears, data.totalSummons);
+
+            if (data.checkpoints != null)
+            {
+                for (int i = 0; i < GameProgress.Checkpoints.Length && i < data.checkpoints.Length; i++)
+                    GameProgress.Checkpoints[i] = data.checkpoints[i] ?? new ZoneCheckpoint();
+            }
 
             if (data.unlockedGuardianNames != null && data.unlockedGuardianNames.Length > 0)
             {

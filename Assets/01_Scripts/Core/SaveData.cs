@@ -11,5 +11,9 @@ namespace WitchHour.Core
     {
         public bool[] zoneCleared = new bool[3];
         public string[] unlockedGuardianNames = Array.Empty<string>();
+        public int totalClears;
+        public int totalSummons;
+        public ZoneCheckpoint[] checkpoints =
+            { new ZoneCheckpoint(), new ZoneCheckpoint(), new ZoneCheckpoint() };
     }
 }
